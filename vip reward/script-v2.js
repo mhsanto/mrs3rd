@@ -35,9 +35,9 @@
     function animate(item) {
       if (item.done) return;
       item.done = true;
-      const duration = 1400;
+      const duration = 2600;
       const startTime = performance.now();
-      const easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+      const easeOut = function (t) { return 1 - Math.pow(1 - t, 5); };
 
       function tick(now) {
         const elapsed = now - startTime;
