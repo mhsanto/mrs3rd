@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Rewards Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="stage">
+        <p class="stage-hint">Hover or tap the floating button</p>
+    </main>
+
+    <div class="variant-switch" role="tablist" aria-label="Menu style">
+        <button type="button" data-set-variant="arc" class="is-active">Arc · Blue</button>
+        <button type="button" data-set-variant="stack">Stack · Red</button>
+    </div>
+
+    <div class="fab" id="fab" data-open="false" data-variant="arc">
+
+        <div class="fab-panel" role="menu" aria-hidden="true">
+
+            <button type="button" class="fab-close" id="fabClose" aria-label="Close menu">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <ul class="fab-list">
+                <li class="fab-item" role="menuitem" data-action="slots" tabindex="0">
+                    <span class="fab-icon" aria-hidden="true">&#127920;</span>
+                    <span class="fab-label">Slot Game Mission</span>
+                    <span class="fab-chev" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="fab-item" role="menuitem" data-action="spin" tabindex="0">
+                    <span class="fab-icon" aria-hidden="true">&#127905;</span>
+                    <span class="fab-label">Lucky Spin Wheel</span>
+                    <span class="fab-chev" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="fab-item" role="menuitem" data-action="checkin" tabindex="0">
+                    <span class="fab-icon" aria-hidden="true">&#128197;</span>
+                    <span class="fab-label">Check In Bonus</span>
+                    <span class="fab-chev" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="fab-item" role="menuitem" data-action="tournament" tabindex="0">
+                    <span class="fab-icon" aria-hidden="true">&#127942;</span>
+                    <span class="fab-label">Tournament</span>
+                    <span class="fab-chev" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="fab-item" role="menuitem" data-action="vip" tabindex="0">
+                    <span class="fab-icon" aria-hidden="true">&#128081;</span>
+                    <span class="fab-label">VIP Program</span>
+                    <span class="fab-chev" aria-hidden="true">&rsaquo;</span>
+                </li>
+            </ul>
+        </div>
+
+        <button type="button" class="fab-trigger" id="fabTrigger" aria-label="Open rewards menu" aria-expanded="false">
+            <img src="assets/mascot.png" alt="Extra Free Rewards" class="fab-trigger-image fab-trigger-image--arc" />
+            <img src="assets/mascot2.png" alt="Extra Free Rewards" class="fab-trigger-image fab-trigger-image--stack" />
+        </button>
+    </div>
+
+    <script src="script.jsx"></script>
+</body>
+</html>

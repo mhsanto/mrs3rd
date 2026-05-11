@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N-1 GANG — VIP Reward System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Russo+One&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style-v2.css" />
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ============== TOP BAR ============== -->
+    <header class="topbar">
+      <div class="logo">
+        <div class="top">N<sup>.</sup>1</div>
+        <div class="bot">GANG</div>
+      </div>
+
+      <nav class="nav">
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 11 L12 3 L21 11" />
+            <path d="M5 10 V21 H19 V10" />
+          </svg>HOME</a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M9 4 V20 M15 4 V20" />
+          </svg>SLOTS</a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7 V12 L15 14" />
+          </svg>LIVE</a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3 12 H21 M12 3 C15 7 15 17 12 21 C9 17 9 7 12 3" />
+          </svg>SPORTS</a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="8" width="18" height="5" />
+            <rect x="5" y="13" width="14" height="8" />
+            <path d="M12 8 V21 M8 8 C6 5 12 3 12 8 C12 3 18 5 16 8" />
+          </svg>PROMOTIONS</a>
+        <a href="#" class="active"><img class="nav-crown" src="assets/Crown.png" alt="" />VIP</a>
+      </nav>
+
+      <div class="top-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="btn btn-outline">LOGIN</button>
+        <button class="btn btn-primary">REGISTER</button>
+      </div>
+    </header>
+
+    <!-- ============== HERO ============== -->
+    <section class="hero">
+      <div class="hero-inner">
+        <!-- LEFT ART: slot machine -->
+        <div class="hero-art-left">
+          <img src="assets/BG-Cover.png" alt="Slot machine with crown, chips and coins" />
+        </div>
+
+        <!-- CENTER TITLE -->
+        <div class="hero-center">
+          <img class="crown-emblem" src="assets/Crown.png" alt="" />
+          <div class="vip-title">
+            <span class="vip">VIP</span>
+            <span class="rs">REWARD&nbsp;SYSTEM</span>
+          </div>
+          <div class="tagline">Unlock premium benefits and exclusive bonuses<br />crafted for our most loyal members.
+          </div>
+        </div>
+
+        <!-- RIGHT ART: playing cards + poker chip -->
+        <div class="hero-art-right">
+          <img src="assets/Cards.png" alt="Ace and King playing cards with poker chip" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== VIP PROGRESS STATUS ============== -->
+    <div class="section-banner">━━&nbsp; VIP PROGRESS STATUS &nbsp;━━</div>
+
+    <section class="progress-panel">
+      <div class="progress-grid">
+        <div class="royal-block">
+          <img class="rank-emblem" src="assets/ranks/rank/Amethyst.png" alt="Amethyst rank" />
+          <div class="royal-text">AMETHYST</div>
+          <div class="royal-sub">MEMBER</div>
+        </div>
+
+        <div class="bonuses">
+          <div class="bonus">
+            <div class="bonus-label">MONTHLY BONUS</div>
+            <div class="bonus-rm">RM</div>
+            <div class="bonus-amt">1,888.00</div>
+            <button class="bonus-action primary" data-bonus="monthly">CLAIM NOW</button>
+          </div>
+          <div class="bonus">
+            <div class="bonus-label">BIRTHDAY BONUS</div>
+            <div class="bonus-rm">RM</div>
+            <div class="bonus-amt">1,888.00</div>
+            <button class="bonus-action ghost" data-bonus="birthday" disabled>COMING SOON</button>
+          </div>
+          <div class="bonus">
+            <div class="bonus-label">TIER UPGRADE BONUS</div>
+            <div class="bonus-rm">RM</div>
+            <div class="bonus-amt">3,888.00</div>
+            <button class="bonus-action outline" data-bonus="upgrade">VIEW DETAILS</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== MEMBER TIER OVERVIEW ============== -->
+    <div class="section-banner">━━&nbsp; MEMBER TIER OVERVIEW &nbsp;━━</div>
+
+    <section class="tiers">
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Bronze.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-1.png" alt="" />
+        </div>
+        <div class="name">BRONZE</div>
+        <div class="deposit">RM 0</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Silver.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-2.png" alt="" />
+        </div>
+        <div class="name">SILVER</div>
+        <div class="deposit">RM 500</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Gold.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-3.png" alt="" />
+        </div>
+        <div class="name">GOLD</div>
+        <div class="deposit">RM 2,000</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Platinum.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-4.png" alt="" />
+        </div>
+        <div class="name">PLATINUM</div>
+        <div class="deposit">RM 5,000</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Diamond.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-5.png" alt="" />
+        </div>
+        <div class="name">DIAMOND</div>
+        <div class="deposit">RM 10,000</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Emarald.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-6.png" alt="" />
+        </div>
+        <div class="name">EMERALD</div>
+        <div class="deposit">RM 20,000</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Ruby.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-7.png" alt="" />
+        </div>
+        <div class="name">RUBY</div>
+        <div class="deposit">RM 50,000</div>
+      </div>
+      <div class="tier">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Sapphire.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-8.png" alt="" />
+        </div>
+        <div class="name">SAPPHIRE</div>
+        <div class="deposit">RM 100,000</div>
+      </div>
+      <div class="tier royal">
+        <div class="tier-media">
+          <img class="rank-img" src="assets/ranks/rank/Amethyst.png" alt="" />
+          <img class="level-img" src="assets/ranks/vip-level-9.png" alt="" />
+        </div>
+        <div class="name">AMETHYST</div>
+        <div class="deposit">RM 200,000</div>
+      </div>
+    </section>
+
+    <!-- ============== TIER BENEFIT OVERVIEW ============== -->
+    <div class="section-banner">━━&nbsp; VIP TIER BENEFIT OVERVIEW &nbsp;━━</div>
+
+    <div class="table-wrap">
+      <table class="benefit">
+        <thead>
+          <tr>
+            <th>LEVEL</th>
+            <th>UPGRADE BONUS</th>
+            <th>MONTHLY BONUS</th>
+            <th>BIRTHDAY BONUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lvl">BRONZE</td>
+            <td>RM88</td>
+            <td><span class="dash"></span></td>
+            <td>RM100</td>
+          </tr>
+          <tr>
+            <td class="lvl">SILVER</td>
+            <td>RM188</td>
+            <td>RM68</td>
+            <td>RM188</td>
+          </tr>
+          <tr>
+            <td class="lvl">GOLD</td>
+            <td>RM388</td>
+            <td>RM188</td>
+            <td>RM288</td>
+          </tr>
+          <tr>
+            <td class="lvl">PLATINUM</td>
+            <td>RM588</td>
+            <td>RM288</td>
+            <td>RM388</td>
+          </tr>
+          <tr>
+            <td class="lvl">DIAMOND</td>
+            <td>RM888</td>
+            <td>RM388</td>
+            <td>RM488</td>
+          </tr>
+          <tr>
+            <td class="lvl">EMERALD</td>
+            <td>RM1,288</td>
+            <td>RM588</td>
+            <td>RM688</td>
+          </tr>
+          <tr>
+            <td class="lvl">RUBY</td>
+            <td>RM1,888</td>
+            <td>RM888</td>
+            <td>RM988</td>
+          </tr>
+          <tr>
+            <td class="lvl">SAPPHIRE</td>
+            <td>RM2,888</td>
+            <td>RM1,288</td>
+            <td>RM1,388</td>
+          </tr>
+          <tr class="royal">
+            <td class="lvl">AMETHYST</td>
+            <td>RM3,888</td>
+            <td>RM1,888</td>
+            <td>RM1,888</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ============== TERMS ============== -->
+    <section class="terms">
+      <div class="terms-title">
+        <span class="terms-line"></span>
+        <span class="terms-title-text">TERMS &amp; CONDITIONS</span>
+        <span class="terms-line"></span>
+      </div>
+      <div class="terms-grid">
+        <div class="term">
+          <div class="term-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 3 L20 6 V12 C20 16.5 16.5 19.5 12 21 C7.5 19.5 4 16.5 4 12 V6 Z" />
+              <path d="M8.5 12 L11 14.5 L15.5 9.5" />
+            </svg>
+          </div>
+          <div class="txt">Cumulative deposit threshold required to qualify for each VIP tier.</div>
+        </div>
+        <div class="term">
+          <div class="term-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="8" width="18" height="4" rx="1" />
+              <rect x="5" y="12" width="14" height="9" rx="1" />
+              <path d="M12 8 V21" />
+              <path d="M12 8 C10.5 5 7.5 4.5 7 6.5 C6.7 8 9 8 12 8" />
+              <path d="M12 8 C13.5 5 16.5 4.5 17 6.5 C17.3 8 15 8 12 8" />
+            </svg>
+          </div>
+          <div class="txt">VIP bonuses cannot be combined with other promotions.</div>
+        </div>
+        <div class="term">
+          <div class="term-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 12 A8 8 0 0 1 16 5 L19 8 M19 4 V8 H15" />
+              <path d="M20 12 A8 8 0 0 1 8 19 L5 16 M5 20 V16 H9" />
+            </svg>
+          </div>
+          <div class="txt">1x turnover (bet amount) is required before withdrawal.</div>
+        </div>
+        <div class="term">
+          <div class="term-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M7 8 H17 A4 4 0 0 1 21 12 V14 A4 4 0 0 1 17 18 C15.5 18 14.6 17.3 14 16.5 L13 15 H11 L10 16.5 C9.4 17.3 8.5 18 7 18 A4 4 0 0 1 3 14 V12 A4 4 0 0 1 7 8 Z" />
+              <path d="M7 11 V13 M6 12 H8" />
+              <circle cx="15.5" cy="12" r="0.9" fill="currentColor" stroke="none" />
+              <circle cx="17" cy="13.5" r="0.9" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div class="txt">This VIP reward system is valid for all games.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <script src="script-v2.js"></script>
+</body>
+
+</html>

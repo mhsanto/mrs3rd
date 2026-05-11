@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warrior VIP Wallet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="mainpage.css" />
+</head>
+<body data-theme="gold">
+    <!-- Theme switcher swatches -->
+    <div class="theme-switcher" aria-label="Choose theme">
+        <button type="button" class="swatch swatch-gold" data-set-theme="gold" aria-label="Gold theme"></button>
+        <button type="button" class="swatch swatch-blue" data-set-theme="blue" aria-label="Blue theme"></button>
+        <button type="button" class="swatch swatch-red" data-set-theme="red" aria-label="Red theme"></button>
+        <button type="button" class="swatch swatch-pink" data-set-theme="pink" aria-label="Pink theme"></button>
+    </div>
+
+    <!-- Floating hearts decoration (pink theme only) -->
+    <div class="hearts-deco" aria-hidden="true">
+        <span class="heart h1">&#10084;</span>
+        <span class="heart h2">&#10084;</span>
+        <span class="heart h3">&#10084;</span>
+        <span class="heart h4">&#10084;</span>
+        <span class="heart h5">&#10084;</span>
+        <span class="heart h6">&#10084;</span>
+    </div>
+
+    <main class="wallet-card">
+        <!-- Header band: warrior badge | title + pill | VIP emblem -->
+        <header class="wallet-header">
+            <div class="warrior-badge">
+                <div class="warrior-badge-inner">
+                    <img src="assets/profile.png" alt="Profile" class="profile-image" />
+                </div>
+            </div>
+
+            <div class="title-block">
+                <h1 class="title">
+                    <span class="title-main">WARRIOR</span>
+                    <span class="vip-tag">VIP1</span>
+                </h1>
+                <div class="progress-pill" data-current="500" data-target="2888">
+                    <span class="progress-fill" aria-hidden="true"></span>
+                    <span class="progress-pill-content">
+                        <span class="rm-current">RM<span class="rm-current-num">0</span></span>
+                        <span class="pill-divider">/</span>
+                        <span class="rm-target">RM2888</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="vip-emblem">
+                <img src="assets/Vip9.png" alt="VIP Level 9 Amethyst" class="vip-image" />
+            </div>
+        </header>
+
+        <!-- User info block -->
+        <section class="user-info">
+            <div class="divider"><span class="diamond"></span></div>
+            <h2 class="username-display">KELVIN</h2>
+            <p class="info-line">Username: <span class="info-value">373539377</span></p>
+            <p class="info-line">RYT Bank (<span class="info-value">8611578025</span>)</p>
+            <div class="divider"><span class="diamond"></span></div>
+        </section>
+
+        <!-- Balance and actions row -->
+        <section class="balance-row">
+            <div class="balance-info">
+                <p class="baki-label">Baki:</p>
+                <p class="baki-amount">RM0.00</p>
+                <p class="min-info">Deposit Minimum: <span class="min-value">RM1.00</span></p>
+                <p class="min-info">Withdraw Minimum: <span class="min-value">RM25.00</span></p>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="action-btn deposit">
+                    <span class="action-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 8 L21 8 L21 19 Q21 20 20 20 L4 20 Q3 20 3 19 Z"
+                                  fill="none" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M3 8 L3 6 Q3 5 4 5 L17 5 Q18 5 18 6 L18 8"
+                                  fill="none" stroke="currentColor" stroke-width="1.8" />
+                            <circle cx="17" cy="14" r="1.6" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <span class="action-label">Deposit</span>
+                    <span class="chevron" aria-hidden="true">&rsaquo;</span>
+                </button>
+
+                <button type="button" class="action-btn withdraw">
+                    <span class="action-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="6" width="18" height="13" rx="1.5"
+                                  fill="none" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M3 10 L21 10" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M6 15 L10 15" stroke="currentColor"
+                                  stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <span class="action-label">Withdraw</span>
+                    <span class="chevron" aria-hidden="true">&rsaquo;</span>
+                </button>
+
+                <button type="button" class="action-btn refresh">
+                    <span class="action-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 12 Q4 5 12 5 Q17 5 19 9"
+                                  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                            <path d="M19 4 L19 9 L14 9" fill="none" stroke="currentColor"
+                                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M20 12 Q20 19 12 19 Q7 19 5 15"
+                                  fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                            <path d="M5 20 L5 15 L10 15" fill="none" stroke="currentColor"
+                                  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span class="action-label">Refresh</span>
+                    <span class="chevron" aria-hidden="true">&rsaquo;</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="mainpage.js"></script>
+</body>
+</html>

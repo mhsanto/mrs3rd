@@ -1,0 +1,927 @@
+/* ============================================================
+   WARRIOR VIP WALLET — Multi-theme stylesheet
+   Themes are swapped via [data-theme="..."] on <body>.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--page-bg);
+    transition: background 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 14px;
+    position: relative;
+}
+
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
+
+/* Gold — base */
+[data-theme="gold"] {
+    --page-bg: radial-gradient(circle at 50% 30%, #1a1208 0%, #050505 70%);
+    --card-bg: linear-gradient(180deg, #1a1408 0%, #0a0805 100%);
+    --card-border: #d4af37;
+    --card-border-glow: rgba(212, 175, 55, 0.5);
+    --accent: #d4af37;
+    --accent-bright: #f4d03f;
+    --accent-deep: #8a6d1a;
+    --text: #ffffff;
+    --text-muted: #d4af37;
+    --pill-bg: linear-gradient(180deg, #0a0805 0%, #1a1408 100%);
+    --pill-border: #d4af37;
+    --pill-text: #d4af37;
+    --btn-bg: linear-gradient(180deg, #1a1408 0%, #0a0805 100%);
+    --btn-border: #d4af37;
+    --btn-text: #d4af37;
+    --btn-hover-bg: linear-gradient(180deg, #2a1f10 0%, #1a1408 100%);
+    --divider-color: #d4af37;
+    --badge-ring: linear-gradient(135deg, #f4d03f 0%, #d4af37 50%, #8a6d1a 100%);
+    --emblem-ring: linear-gradient(135deg, #f4d03f 0%, #d4af37 50%, #8a6d1a 100%);
+    --shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+    --ornate-display: block;
+}
+
+/* Blue */
+[data-theme="blue"] {
+    --page-bg: radial-gradient(circle at 50% 30%, #0a2342 0%, #050d1c 70%);
+    --card-bg: linear-gradient(180deg, #0e2647 0%, #081832 100%);
+    --card-border: #3b9eff;
+    --card-border-glow: rgba(59, 158, 255, 0.5);
+    --accent: #3b9eff;
+    --accent-bright: #5fb0ff;
+    --accent-deep: #1c5fa8;
+    --text: #ffffff;
+    --text-muted: #8ec5ff;
+    --pill-bg: linear-gradient(180deg, #0a1d3a 0%, #14304f 100%);
+    --pill-border: #3b9eff;
+    --pill-text: #ffffff;
+    --btn-bg: linear-gradient(180deg, #14304f 0%, #0a1d3a 100%);
+    --btn-border: #3b9eff;
+    --btn-text: #ffffff;
+    --btn-hover-bg: linear-gradient(180deg, #1f4778 0%, #14304f 100%);
+    --divider-color: #3b9eff;
+    --badge-ring: linear-gradient(135deg, #5fb0ff 0%, #3b9eff 50%, #1c5fa8 100%);
+    --emblem-ring: linear-gradient(135deg, #5fb0ff 0%, #3b9eff 50%, #1c5fa8 100%);
+    --shadow: 0 0 40px rgba(59, 158, 255, 0.3);
+    --ornate-display: none;
+}
+
+/* Red */
+[data-theme="red"] {
+    --page-bg: linear-gradient(180deg, #ffffff 0%, #fff5f5 100%);
+    --card-bg: #ffffff;
+    --card-border: #e63946;
+    --card-border-glow: rgba(230, 57, 70, 0.3);
+    --accent: #e63946;
+    --accent-bright: #ff5566;
+    --accent-deep: #9d1f29;
+    --text: #1a1a1a;
+    --text-muted: #e63946;
+    --pill-bg: #1a1a1a;
+    --pill-border: #e63946;
+    --pill-text: #ffffff;
+    --btn-bg: #ffffff;
+    --btn-border: #e63946;
+    --btn-text: #1a1a1a;
+    --btn-hover-bg: #fff0f1;
+    --divider-color: #e63946;
+    --badge-ring: linear-gradient(135deg, #ff5566 0%, #e63946 50%, #9d1f29 100%);
+    --emblem-ring: linear-gradient(135deg, #ff5566 0%, #e63946 50%, #9d1f29 100%);
+    --shadow: 0 8px 32px rgba(230, 57, 70, 0.2);
+    --ornate-display: none;
+}
+
+/* Pink */
+[data-theme="pink"] {
+    --page-bg: linear-gradient(180deg, #ffe0ec 0%, #ffcde0 100%);
+    --card-bg: linear-gradient(180deg, #ffffff 0%, #fff0f6 100%);
+    --card-border: #ff80c0;
+    --card-border-glow: rgba(255, 77, 166, 0.3);
+    --accent: #ff4da6;
+    --accent-bright: #ff80c0;
+    --accent-deep: #c2185b;
+    --text: #c2185b;
+    --text-muted: #ff4da6;
+    --pill-bg: #ffffff;
+    --pill-border: #ff4da6;
+    --pill-text: #ff4da6;
+    --btn-bg: linear-gradient(180deg, #ff80c0 0%, #ff4da6 100%);
+    --btn-border: #ff4da6;
+    --btn-text: #ffffff;
+    --btn-hover-bg: linear-gradient(180deg, #ff99cc 0%, #ff66b3 100%);
+    --divider-color: #ff80c0;
+    --badge-ring: linear-gradient(135deg, #ffb3d9 0%, #ff80c0 50%, #ff4da6 100%);
+    --emblem-ring: linear-gradient(135deg, #ffb3d9 0%, #ff80c0 50%, #ff4da6 100%);
+    --shadow: 0 8px 32px rgba(255, 77, 166, 0.3);
+    --ornate-display: none;
+}
+
+/* ============================================================
+   THEME SWITCHER SWATCHES
+   ============================================================ */
+
+.theme-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.swatch {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 0;
+}
+
+.swatch:hover {
+    transform: scale(1.15);
+}
+
+.swatch-gold {
+    background: linear-gradient(135deg, #f4d03f, #d4af37, #8a6d1a);
+}
+.swatch-blue {
+    background: linear-gradient(135deg, #5fb0ff, #3b9eff, #1c5fa8);
+}
+.swatch-red {
+    background: linear-gradient(135deg, #ff5566, #e63946, #9d1f29);
+}
+.swatch-pink {
+    background: linear-gradient(135deg, #ffb3d9, #ff80c0, #ff4da6);
+}
+
+[data-theme="gold"] .swatch-gold,
+[data-theme="blue"] .swatch-blue,
+[data-theme="red"] .swatch-red,
+[data-theme="pink"] .swatch-pink {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 12px rgba(255, 255, 255, 0.5);
+    transform: scale(1.15);
+}
+
+/* ============================================================
+   WALLET CARD
+   ============================================================ */
+
+.wallet-card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 18px;
+    padding: 8px 16px 12px;
+    box-shadow: var(--shadow), 0 0 0 1px var(--card-border-glow);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ============================================================
+   HEADER BAND
+   ============================================================ */
+
+.wallet-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 0;
+}
+
+/* Warrior badge (left) */
+.warrior-badge {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: var(--badge-ring);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.warrior-badge-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    overflow: hidden;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.08);
+}
+
+/* Title + pill (center) */
+.title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.title {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-family: "Cinzel", serif;
+    line-height: 1;
+}
+
+.title-main {
+    font-size: 26px;
+    font-weight: 900;
+    background: linear-gradient(180deg, var(--accent-bright) 0%, var(--accent) 60%, var(--accent-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.vip-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+}
+
+.progress-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 18px;
+    background: var(--pill-bg);
+    border: 1.5px solid var(--pill-border);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pill-text);
+    white-space: nowrap;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.progress-fill {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: linear-gradient(
+        90deg,
+        var(--accent-deep) 0%,
+        var(--accent) 50%,
+        var(--accent-bright) 100%
+    );
+    transition: width 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+    opacity: 0.85;
+    box-shadow: 0 0 12px var(--card-border-glow);
+}
+
+.progress-fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: shine 2.4s ease-in-out 1.6s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    60%, 100% {
+        transform: translateX(200%);
+    }
+}
+
+.progress-pill-content {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="red"] .progress-pill-content,
+[data-theme="pink"] .progress-pill-content {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.pill-divider {
+    opacity: 0.6;
+}
+
+[data-theme="red"] .rm-current,
+[data-theme="red"] .pill-divider {
+    color: #ffffff;
+}
+[data-theme="red"] .rm-target {
+    color: var(--accent);
+}
+
+/* VIP emblem (right) */
+.vip-emblem {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: -16px -10px -16px 0;
+}
+
+.vip-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px var(--card-border-glow));
+    transition: filter 0.4s ease, transform 0.2s ease;
+}
+
+.vip-image:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   USER INFO
+   ============================================================ */
+
+.user-info {
+    text-align: center;
+    padding: 2px 0 4px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--divider-color) 50%, transparent 100%);
+    opacity: 0.6;
+}
+
+.diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    transform: rotate(45deg);
+    margin: 0 8px;
+}
+
+.username-display {
+    font-family: "Cinzel", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 2px 0 2px;
+    letter-spacing: 2px;
+}
+
+.info-line {
+    font-size: 13px;
+    color: var(--text);
+    margin: 2px 0;
+    font-weight: 500;
+}
+
+.info-value {
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+/* ============================================================
+   BALANCE ROW
+   ============================================================ */
+
+.balance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 2px;
+}
+
+.balance-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.baki-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.baki-amount {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="pink"] .baki-amount {
+    color: var(--accent);
+}
+
+.min-info {
+    font-size: 11px;
+    color: var(--text);
+    margin: 2px 0;
+    font-weight: 500;
+}
+
+.min-value {
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+/* ============================================================
+   ACTION BUTTONS
+   ============================================================ */
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.action-btn {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 8px;
+    min-width: 150px;
+    padding: 6px 12px;
+    background: var(--btn-bg);
+    border: 1.5px solid var(--btn-border);
+    border-radius: 999px;
+    color: var(--btn-text);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.action-btn:hover {
+    background: var(--btn-hover-bg);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--card-border-glow);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    color: var(--accent);
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    padding: 3px;
+}
+
+[data-theme="pink"] .action-icon {
+    color: #ffffff;
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="red"] .action-icon {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.action-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.action-label {
+    text-align: left;
+    text-transform: none;
+}
+
+.chevron {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+[data-theme="pink"] .chevron {
+    color: #ffffff;
+}
+
+/* Ornate corners for gold theme only */
+.action-btn::before,
+.action-btn::after {
+    content: "";
+    display: var(--ornate-display);
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -4px;
+    border-radius: 1px;
+}
+
+.action-btn::before {
+    left: -5px;
+}
+
+.action-btn::after {
+    right: -5px;
+}
+
+/* Refresh spin animation */
+.action-icon.spinning svg {
+    animation: spin 0.6s ease-in-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================================
+   HEARTS DECORATION (pink theme only)
+   ============================================================ */
+
+.hearts-deco {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    display: none;
+    z-index: 1;
+}
+
+[data-theme="pink"] .hearts-deco {
+    display: block;
+}
+
+.heart {
+    position: absolute;
+    color: #ff80c0;
+    opacity: 0.5;
+    font-size: 18px;
+    animation: floatHeart 6s ease-in-out infinite;
+}
+
+.heart.h1 { top: 12%; left: 8%; font-size: 16px; animation-delay: 0s; }
+.heart.h2 { top: 22%; right: 12%; font-size: 22px; animation-delay: 1s; }
+.heart.h3 { top: 55%; left: 6%; font-size: 14px; animation-delay: 2s; }
+.heart.h4 { top: 70%; right: 8%; font-size: 20px; animation-delay: 1.5s; }
+.heart.h5 { top: 38%; left: 4%; font-size: 12px; animation-delay: 0.5s; }
+.heart.h6 { top: 85%; right: 18%; font-size: 16px; animation-delay: 2.5s; }
+
+@keyframes floatHeart {
+    0%, 100% {
+        transform: translateY(0) rotate(-8deg);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-20px) rotate(8deg);
+        opacity: 0.7;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE — phones and small tablets
+   ============================================================ */
+
+/* Large phone / small tablet (≤ 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 12px 10px;
+    }
+    .wallet-card {
+        padding: 6px 12px 10px;
+        border-radius: 16px;
+    }
+    .wallet-header {
+        gap: 6px;
+    }
+    .title-main {
+        font-size: 22px;
+    }
+    .vip-tag {
+        font-size: 11px;
+    }
+    .warrior-badge {
+        width: 60px;
+        height: 60px;
+    }
+    .vip-emblem {
+        width: 95px;
+        height: 95px;
+        margin: -12px -6px -12px 0;
+    }
+    .progress-pill {
+        padding: 4px 14px;
+        font-size: 12px;
+    }
+    .username-display {
+        font-size: 19px;
+        letter-spacing: 1.5px;
+        margin: 1px 0;
+    }
+    .info-line {
+        font-size: 12px;
+    }
+    .baki-amount {
+        font-size: 26px;
+    }
+    .baki-label {
+        font-size: 14px;
+    }
+    .min-info {
+        font-size: 10px;
+    }
+    .action-btn {
+        min-width: 128px;
+        font-size: 12px;
+        padding: 5px 10px;
+        gap: 6px;
+    }
+    .action-icon {
+        width: 22px;
+        height: 22px;
+        padding: 2px;
+    }
+    .chevron {
+        font-size: 17px;
+    }
+    .theme-switcher {
+        top: 10px;
+        right: 10px;
+        padding: 6px 8px;
+        gap: 8px;
+    }
+    .swatch {
+        width: 22px;
+        height: 22px;
+    }
+    .user-info {
+        padding: 2px 0 3px;
+    }
+    .divider {
+        margin: 1px 0;
+    }
+}
+
+/* iPhone SE 2/3 and similar (≤ 400px) */
+@media (max-width: 400px) {
+    body {
+        padding: 10px 8px;
+    }
+    .wallet-card {
+        padding: 5px 10px 8px;
+    }
+    .wallet-header {
+        gap: 4px;
+    }
+    .title-main {
+        font-size: 20px;
+        letter-spacing: 0.5px;
+    }
+    .vip-tag {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
+    .warrior-badge {
+        width: 54px;
+        height: 54px;
+    }
+    .vip-emblem {
+        width: 86px;
+        height: 86px;
+        margin: -11px -5px -11px 0;
+    }
+    .progress-pill {
+        padding: 3px 12px;
+        font-size: 11px;
+    }
+    .username-display {
+        font-size: 17px;
+        letter-spacing: 1px;
+    }
+    .baki-amount {
+        font-size: 23px;
+    }
+    .baki-label {
+        font-size: 13px;
+    }
+    .info-line {
+        font-size: 11px;
+    }
+    .min-info {
+        font-size: 9.5px;
+    }
+    .action-btn {
+        min-width: 118px;
+        font-size: 11px;
+        padding: 4px 9px;
+        gap: 5px;
+    }
+    .action-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .chevron {
+        font-size: 15px;
+    }
+    .balance-row {
+        gap: 8px;
+    }
+    .theme-switcher {
+        top: 8px;
+        right: 8px;
+        padding: 5px 7px;
+        gap: 6px;
+    }
+    .swatch {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* iPhone SE 1 / very small phones (≤ 360px) */
+@media (max-width: 360px) {
+    body {
+        padding: 8px 6px;
+    }
+    .wallet-card {
+        padding: 4px 8px 7px;
+        border-radius: 14px;
+    }
+    .title-main {
+        font-size: 17px;
+    }
+    .vip-tag {
+        font-size: 9px;
+    }
+    .warrior-badge {
+        width: 48px;
+        height: 48px;
+    }
+    .vip-emblem {
+        width: 76px;
+        height: 76px;
+        margin: -9px -3px -9px 0;
+    }
+    .progress-pill {
+        padding: 2px 10px;
+        font-size: 10px;
+    }
+    .username-display {
+        font-size: 15px;
+        letter-spacing: 0.8px;
+        margin: 0;
+    }
+    .baki-amount {
+        font-size: 20px;
+    }
+    .baki-label {
+        font-size: 12px;
+    }
+    .info-line {
+        font-size: 10px;
+    }
+    .min-info {
+        font-size: 9px;
+    }
+    .action-btn {
+        min-width: 0;
+        width: 100%;
+        font-size: 10px;
+        padding: 4px 8px;
+        gap: 4px;
+    }
+    .action-icon {
+        width: 18px;
+        height: 18px;
+    }
+    .chevron {
+        font-size: 13px;
+    }
+    .balance-row {
+        gap: 6px;
+    }
+    .actions {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    .balance-info {
+        flex: 0 0 auto;
+    }
+    /* hide ornate corner diamonds on gold theme — they look cramped */
+    .action-btn::before,
+    .action-btn::after {
+        display: none !important;
+    }
+}
+
+/* Tiniest phones — stack actions below balance (≤ 300px) */
+@media (max-width: 300px) {
+    .balance-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .balance-info {
+        text-align: center;
+    }
+    .actions {
+        width: 100%;
+    }
+    .action-btn {
+        width: 100%;
+    }
+}
+
+/* Short viewports (landscape phones) — keep page from scrolling unnecessarily */
+@media (max-height: 600px) {
+    body {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}

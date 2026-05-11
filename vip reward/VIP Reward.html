@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KGAME99 — VIP Reward System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&family=Russo+One&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ============== TOP BAR ============== -->
+    <header class="topbar">
+      <div class="logo"><span class="k">K</span>GAME99</div>
+      <div class="actions">
+        <button class="btn btn-outline">Login</button>
+        <button class="btn btn-primary">Register</button>
+      </div>
+    </header>
+
+    <!-- ============== HERO ============== -->
+    <section class="hero">
+      <div class="stars">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+      </div>
+
+      <div class="vip-title">
+        <div class="vip">VIP</div>
+        <div class="right">
+          <div class="reward">REWARD</div>
+          <div class="system">SYSTEM</div>
+          <div class="underline"></div>
+        </div>
+      </div>
+
+      <!-- Cards / chip / dice art -->
+      <div class="hero-art">
+        <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="cardBlue" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#3a5ea8" />
+              <stop offset="1" stop-color="#1f3a78" />
+            </linearGradient>
+            <linearGradient id="cardBrown1" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#6b4a23" />
+              <stop offset="1" stop-color="#3a2810" />
+            </linearGradient>
+            <linearGradient id="cardBrown2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#7a5428" />
+              <stop offset="1" stop-color="#43300f" />
+            </linearGradient>
+            <linearGradient id="cardWhite" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#fafafa" />
+              <stop offset="1" stop-color="#dadde3" />
+            </linearGradient>
+            <radialGradient id="chipGrad" cx=".5" cy=".4" r=".6">
+              <stop offset="0" stop-color="#ffd24a" />
+              <stop offset="1" stop-color="#c97a00" />
+            </radialGradient>
+            <linearGradient id="diceGrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" />
+              <stop offset="1" stop-color="#cdd2dd" />
+            </linearGradient>
+          </defs>
+
+          <g transform="translate(110,40) rotate(-18)">
+            <rect width="98" height="140" rx="10" fill="url(#cardBlue)" stroke="#0a162d" stroke-width="2" />
+            <text x="14" y="32" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#fff">A</text>
+            <path d="M14 42 L20 52 L8 52 Z" fill="#fff" />
+          </g>
+          <g transform="translate(180,28) rotate(-6)">
+            <rect width="98" height="140" rx="10" fill="url(#cardBrown1)" stroke="#0a162d" stroke-width="2" />
+            <text x="14" y="32" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#fff">K</text>
+            <path d="M16 50 C10 42, 2 50, 16 60 C30 50, 22 42, 16 50 Z" fill="#e23a3a" />
+          </g>
+          <g transform="translate(250,22) rotate(6)">
+            <rect width="98" height="140" rx="10" fill="url(#cardWhite)" stroke="#0a162d" stroke-width="2" />
+            <text x="14" y="32" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#1a1a1a">Q</text>
+            <path d="M16 40 L24 52 L16 64 L8 52 Z" fill="#e23a3a" />
+          </g>
+          <g transform="translate(320,32) rotate(18)">
+            <rect width="98" height="140" rx="10" fill="url(#cardBlue)" stroke="#0a162d" stroke-width="2" />
+            <text x="14" y="32" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#fff">J</text>
+            <g transform="translate(14 44)" fill="#fff">
+              <circle cx="0" cy="0" r="4" />
+              <circle cx="6" cy="6" r="4" />
+              <circle cx="-6" cy="6" r="4" />
+              <rect x="-2" y="8" width="4" height="6" />
+            </g>
+          </g>
+
+          <ellipse cx="240" cy="244" rx="120" ry="14" fill="#000" opacity=".5" />
+
+          <g transform="translate(170,220)">
+            <ellipse cx="60" cy="34" rx="60" ry="14" fill="#1a2447" />
+            <ellipse cx="60" cy="28" rx="60" ry="14" fill="url(#chipGrad)" stroke="#7a4a00" stroke-width="2" />
+            <ellipse cx="60" cy="26" rx="48" ry="10" fill="none" stroke="#8a5a00" stroke-width="1.5"
+              stroke-dasharray="4 4" />
+          </g>
+
+          <g transform="translate(360,200)">
+            <path d="M0 22 L26 8 L52 22 L52 56 L26 70 L0 56 Z" fill="url(#diceGrad)" stroke="#a0a6b3"
+              stroke-width="1.5" />
+            <path d="M0 22 L26 36 L52 22" fill="none" stroke="#a0a6b3" stroke-width="1.5" />
+            <path d="M26 36 L26 70" stroke="#a0a6b3" stroke-width="1.5" />
+            <circle cx="14" cy="20" r="2" fill="#1a1a1a" />
+            <circle cx="22" cy="24" r="2" fill="#1a1a1a" />
+            <circle cx="32" cy="18" r="2" fill="#1a1a1a" />
+            <circle cx="38" cy="22" r="2" fill="#1a1a1a" />
+            <circle cx="30" cy="28" r="2" fill="#1a1a1a" />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============== PROGRESS STATUS ============== -->
+    <div class="section-head">
+      <div class="section-eyebrow">VIP LEVEL</div>
+      <div class="section-title">Progress Status</div>
+    </div>
+
+    <section class="progress-panel">
+      <div class="progress-top">
+        <!-- Royal badge -->
+        <div class="royal-badge">
+          <div class="royal-circle">
+            <img class="royal-rank-img" src="assets/ranks/vip-level-9.png" alt="" />
+          </div>
+          <div class="royal-label">
+            <div class="royal-tier">ROYAL</div>
+            <div class="royal-sub">
+              <span class="royal-star" aria-hidden="true">★</span>
+              <span>MEMBER</span>
+              <span class="royal-star" aria-hidden="true">★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly bonus -->
+        <div class="bonus-block">
+          <div class="bonus-label">MONTHLY BONUS</div>
+          <div class="bonus-amount"><span class="rm">RM</span>1,888.00</div>
+          <button class="claim-btn active" data-bonus="monthly">CLAIM</button>
+        </div>
+
+        <!-- Birthday bonus -->
+        <div class="bonus-block">
+          <div class="bonus-label">BIRTHDAY BONUS</div>
+          <div class="bonus-amount"><span class="rm">RM</span>1,888.00</div>
+          <button class="claim-btn disabled" data-bonus="birthday" disabled>CLAIM</button>
+        </div>
+      </div>
+
+      <div class="upgrade-row">
+        <div>
+          <div class="upgrade-label">TIER UPGRADE BONUS</div>
+          <div class="upgrade-amount"><span class="rm">RM</span>3,888.00</div>
+        </div>
+        <svg class="chip-img" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="chip2" cx=".5" cy=".4" r=".6">
+              <stop offset="0" stop-color="#ffd24a" />
+              <stop offset="1" stop-color="#c97a00" />
+            </radialGradient>
+          </defs>
+          <ellipse cx="60" cy="56" rx="50" ry="10" fill="#0d162d" opacity=".7" />
+          <ellipse cx="60" cy="46" rx="50" ry="11" fill="#1a2447" />
+          <ellipse cx="60" cy="40" rx="50" ry="11" fill="url(#chip2)" stroke="#7a4a00" stroke-width="1.5" />
+          <ellipse cx="60" cy="38" rx="40" ry="8" fill="none" stroke="#8a5a00" stroke-width="1.2"
+            stroke-dasharray="4 4" />
+          <text x="60" y="42" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="10"
+            fill="#7a4a00" letter-spacing="1">RM</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============== TIER LADDER ============== -->
+    <section class="ladder">
+      <div class="ladder-line"></div>
+      <div class="ladder-row">
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Bronze.png" alt="" />
+          <div class="ladder-name c-bronze">BRONZE</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 0</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Silver.png" alt="" />
+          <div class="ladder-name">SILVER</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 500</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Gold.png" alt="" />
+          <div class="ladder-name c-gold">GOLD</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 2,000</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Platinum.png" alt="" />
+          <div class="ladder-name">PLATINUM</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 5,000</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Diamond.png" alt="" />
+          <div class="ladder-name c-diamond">DIAMOND</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 10,000</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Emarald.png" alt="" />
+          <div class="ladder-name c-emerald">EMERALD</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 20,000</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Ruby.png" alt="" />
+          <div class="ladder-name c-master">RUBY</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 50,000</div>
+        </div>
+
+        <div class="ladder-step">
+          <img class="ladder-rank" src="assets/ranks/rank/Sapphire.png" alt="" />
+          <div class="ladder-name c-sapphire">SAPPHIRE</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 100,000</div>
+        </div>
+
+        <div class="ladder-step ladder-active">
+          <img class="ladder-rank" src="assets/ranks/rank/Amethyst.png" alt="" />
+          <div class="ladder-name c-elite">AMETHYST</div>
+          <div class="ladder-sub">Total Deposit</div>
+          <div class="ladder-amt">RM 200,000</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== MEMBER TILES ============== -->
+    <section class="members">
+      <div class="mem bronze">
+        <img class="mem-ico" src="assets/ranks/vip-level-1.png" alt="" />
+        <div class="mem-name mem-name-bronze">BRONZE<br />MEMBER</div>
+      </div>
+      <div class="mem silver">
+        <img class="mem-ico" src="assets/ranks/vip-level-2.png" alt="" />
+        <div class="mem-name">SILVER<br />MEMBER</div>
+      </div>
+      <div class="mem gold">
+        <img class="mem-ico" src="assets/ranks/vip-level-3.png" alt="" />
+        <div class="mem-name mem-name-gold">GOLD<br />MEMBER</div>
+      </div>
+      <div class="mem platinum">
+        <img class="mem-ico" src="assets/ranks/vip-level-4.png" alt="" />
+        <div class="mem-name">PLATINUM<br />MEMBER</div>
+      </div>
+      <div class="mem diamond">
+        <img class="mem-ico" src="assets/ranks/vip-level-5.png" alt="" />
+        <div class="mem-name mem-name-diamond">DIAMOND<br />MEMBER</div>
+      </div>
+      <div class="mem emerald">
+        <img class="mem-ico" src="assets/ranks/vip-level-6.png" alt="" />
+        <div class="mem-name mem-name-emerald">EMERALD<br />MEMBER</div>
+      </div>
+      <div class="mem master">
+        <img class="mem-ico" src="assets/ranks/vip-level-7.png" alt="" />
+        <div class="mem-name mem-name-master">RUBY<br />MEMBER</div>
+      </div>
+      <div class="mem sapphire">
+        <img class="mem-ico" src="assets/ranks/vip-level-8.png" alt="" />
+        <div class="mem-name mem-name-sapphire">SAPPHIRE<br />MEMBER</div>
+      </div>
+      <div class="mem royal">
+        <img class="mem-ico" src="assets/ranks/vip-level-9.png" alt="" />
+        <div class="mem-name mem-name-royal">AMETHYST<br />MEMBER</div>
+      </div>
+    </section>
+
+    <!-- ============== TIER BENEFIT OVERVIEW ============== -->
+    <section class="benefits">
+      <div class="benefits-head">
+        <svg class="benefits-star" viewBox="0 0 24 24" fill="#ffc419">
+          <polygon points="12,2 14.9,8.6 22,9.3 16.5,14 18.2,21 12,17.3 5.8,21 7.5,14 2,9.3 9.1,8.6" />
+        </svg>
+        <div class="benefits-title">TIER BENEFIT OVERVIEW</div>
+        <div class="benefits-line"></div>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="th-level">LEVEL</th>
+            <th>UPGRADE BONUS</th>
+            <th>MONTHLY BONUS</th>
+            <th>BIRTHDAY BONUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Bronze.png" alt="" />
+                <div class="lvl-name bronze">BRONZE</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>88</span></td>
+            <td><span class="dash"></span></td>
+            <td><span class="amt"><span class="rm">RM</span>100</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Silver.png" alt="" />
+                <div class="lvl-name">SILVER</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>188</span></td>
+            <td><span class="amt"><span class="rm">RM</span>68</span></td>
+            <td><span class="amt"><span class="rm">RM</span>188</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Gold.png" alt="" />
+                <div class="lvl-name gold">GOLD</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>388</span></td>
+            <td><span class="amt"><span class="rm">RM</span>188</span></td>
+            <td><span class="amt"><span class="rm">RM</span>288</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Platinum.png" alt="" />
+                <div class="lvl-name">PLATINUM</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>588</span></td>
+            <td><span class="amt"><span class="rm">RM</span>288</span></td>
+            <td><span class="amt"><span class="rm">RM</span>388</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Diamond.png" alt="" />
+                <div class="lvl-name lvl-name-diamond">DIAMOND</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>888</span></td>
+            <td><span class="amt"><span class="rm">RM</span>388</span></td>
+            <td><span class="amt"><span class="rm">RM</span>488</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Emarald.png" alt="" />
+                <div class="lvl-name">EMERALD</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>1,288</span></td>
+            <td><span class="amt"><span class="rm">RM</span>588</span></td>
+            <td><span class="amt"><span class="rm">RM</span>688</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Ruby.png" alt="" />
+                <div class="lvl-name" style="color:#ff9a8a;">RUBY</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>1,888</span></td>
+            <td><span class="amt"><span class="rm">RM</span>888</span></td>
+            <td><span class="amt"><span class="rm">RM</span>988</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Sapphire.png" alt="" />
+                <div class="lvl-name" style="color:#9ab0ff;">SAPPHIRE</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>2,888</span></td>
+            <td><span class="amt"><span class="rm">RM</span>1,288</span></td>
+            <td><span class="amt"><span class="rm">RM</span>1,388</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="lvl-cell">
+                <img class="lvl-rank" src="assets/ranks/rank/Amethyst.png" alt="" />
+                <div class="lvl-name" style="color:#e0aaff;">AMETHYST</div>
+              </div>
+            </td>
+            <td><span class="amt"><span class="rm">RM</span>3,888</span></td>
+            <td><span class="amt"><span class="rm">RM</span>1,888</span></td>
+            <td><span class="amt"><span class="rm">RM</span>1,888</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============== TERMS & CONDITIONS ============== -->
+    <section class="tnc">
+      <h3 class="tnc-title"><span>Terms</span> <span class="tnc-amp">&amp;</span> <span>Conditions</span></h3>
+      <ul class="tnc-list">
+        <li>Total Cumulative Deposit must reach the threshold above to attain this promotion.</li>
+        <li>Bonus requires 1&times; turnover to withdraw.</li>
+        <li>Cannot be combined with other bonuses.</li>
+        <li>Valid for all games.</li>
+      </ul>
+    </section>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
