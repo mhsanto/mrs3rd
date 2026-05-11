@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>Project Showcase</h1>
+            <p class="subtitle">A collection of UI/UX prototypes &mdash; click any card to preview the live build.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="grid">
+            <article class="card">
+                <div class="card-thumb thumb-wallet">
+                    <span class="badge">Wallet</span>
+                </div>
+                <div class="card-body">
+                    <h2>Wallet Page</h2>
+                    <p>Main wallet dashboard with profile, balances and VIP indicators.</p>
+                    <a class="btn" href="walletpage/mainpage.html">View Live &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-thumb thumb-vip">
+                    <span class="badge">VIP</span>
+                </div>
+                <div class="card-body">
+                    <h2>VIP Reward</h2>
+                    <p>VIP tiers and rewards interface &mdash; original version.</p>
+                    <a class="btn" href="vip%20reward/VIP%20Reward.html">View Live &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-thumb thumb-vip2">
+                    <span class="badge">VIP v2</span>
+                </div>
+                <div class="card-body">
+                    <h2>VIP Reward v2</h2>
+                    <p>Updated VIP rewards layout with refined visuals.</p>
+                    <a class="btn" href="vip%20reward/VIP%20Reward%20v2.html">View Live &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-thumb thumb-float">
+                    <span class="badge">Widget</span>
+                </div>
+                <div class="card-body">
+                    <h2>Floating Button</h2>
+                    <p>Interactive floating mascot button component.</p>
+                    <a class="btn" href="floatingButton/index.html">View Live &rarr;</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> &mdash; Project preview build</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
