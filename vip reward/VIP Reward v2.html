@@ -96,31 +96,59 @@
     <div class="section-banner">━━&nbsp; VIP PROGRESS STATUS &nbsp;━━</div>
 
     <section class="progress-panel">
-      <div class="progress-grid">
-        <div class="royal-block">
-          <img class="rank-emblem" src="assets/ranks/rank/Amethyst.png" alt="Amethyst rank" />
-          <div class="royal-text">AMETHYST</div>
-          <div class="royal-sub">MEMBER</div>
+      <div class="rank-banner">
+        <div class="rank-banner-text">
+          <div class="rank-banner-name">AMETHYST</div>
+          <div class="rank-banner-sub">MEMBER</div>
         </div>
+        <div class="rank-banner-art">
+          <img class="rank-emblem" src="assets/ranks/rank/Amethyst.png" alt="Amethyst rank" />
+        </div>
+      </div>
 
-        <div class="bonuses">
-          <div class="bonus">
-            <div class="bonus-label">MONTHLY BONUS</div>
-            <div class="bonus-rm">RM</div>
-            <div class="bonus-amt">1,888.00</div>
-            <button class="bonus-action primary" data-bonus="monthly">CLAIM NOW</button>
+      <div class="bonuses">
+        <div class="bonus">
+          <div class="bonus-text">
+            <div class="bonus-label">Monthly Bonus</div>
+            <div class="bonus-amt"><span class="bonus-rm">RM</span>1,888.00</div>
           </div>
-          <div class="bonus">
-            <div class="bonus-label">BIRTHDAY BONUS</div>
-            <div class="bonus-rm">RM</div>
-            <div class="bonus-amt">1,888.00</div>
-            <button class="bonus-action ghost" data-bonus="birthday" disabled>COMING SOON</button>
+          <button class="bonus-action primary" data-bonus="monthly">Check</button>
+        </div>
+        <div class="bonus">
+          <div class="bonus-text">
+            <div class="bonus-label">Register Birthday Bonus</div>
+            <div class="bonus-amt"><span class="bonus-rm">RM</span>1,888.00</div>
           </div>
-          <div class="bonus">
-            <div class="bonus-label">TIER UPGRADE BONUS</div>
-            <div class="bonus-rm">RM</div>
-            <div class="bonus-amt">3,888.00</div>
-            <button class="bonus-action outline" data-bonus="upgrade">VIEW DETAILS</button>
+          <button class="bonus-action ghost" data-bonus="birthday" disabled>Coming Soon</button>
+        </div>
+        <div class="bonus bonus-wide">
+          <div class="bonus-text">
+            <div class="bonus-label">Tier Upgrade Bonus</div>
+            <div class="bonus-hint"><em>*Auto Credit To Your Account.</em> <a href="#" class="bonus-link">Check Here</a></div>
+          </div>
+          <div class="bonus-amt bonus-amt-lg"><span class="bonus-rm">RM</span>3,888.00</div>
+          <div class="bonus-gift" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <defs>
+                <linearGradient id="giftBody" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#4cd964"/>
+                  <stop offset="100%" stop-color="#1f8a36"/>
+                </linearGradient>
+                <linearGradient id="giftLid" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#62e57a"/>
+                  <stop offset="100%" stop-color="#2faa44"/>
+                </linearGradient>
+                <linearGradient id="giftRibbon" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ffd552"/>
+                  <stop offset="100%" stop-color="#f1b300"/>
+                </linearGradient>
+              </defs>
+              <rect x="8" y="24" width="48" height="34" rx="3" fill="url(#giftBody)"/>
+              <rect x="6" y="20" width="52" height="10" rx="2" fill="url(#giftLid)"/>
+              <rect x="28" y="20" width="8" height="38" fill="url(#giftRibbon)"/>
+              <path d="M32 22 C20 14 14 6 22 6 C28 6 32 14 32 22 Z" fill="url(#giftRibbon)"/>
+              <path d="M32 22 C44 14 50 6 42 6 C36 6 32 14 32 22 Z" fill="url(#giftRibbon)"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -129,83 +157,111 @@
     <!-- ============== MEMBER TIER OVERVIEW ============== -->
     <div class="section-banner">━━&nbsp; MEMBER TIER OVERVIEW &nbsp;━━</div>
 
-    <section class="tiers">
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Bronze.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-1.png" alt="" />
+    <section class="tier-chain">
+      <div class="chain-scroll">
+        <div class="chain-track">
+          <div class="chain-line" aria-hidden="true"></div>
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Bronze.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-1.png" alt="" />
+            </div>
+            <div class="chain-name">BRONZE</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 0</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Silver.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-2.png" alt="" />
+            </div>
+            <div class="chain-name">SILVER</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 500</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Gold.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-3.png" alt="" />
+            </div>
+            <div class="chain-name">GOLD</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 2,000</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Platinum.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-4.png" alt="" />
+            </div>
+            <div class="chain-name">PLATINUM</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 5,000</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Diamond.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-5.png" alt="" />
+            </div>
+            <div class="chain-name">DIAMOND</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 10,000</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Emarald.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-6.png" alt="" />
+            </div>
+            <div class="chain-name">EMERALD</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 20,000</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Ruby.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-7.png" alt="" />
+            </div>
+            <div class="chain-name">RUBY</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 50,000</div>
+          </div>
+
+          <div class="chain-step">
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Sapphire.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-8.png" alt="" />
+            </div>
+            <div class="chain-name">SAPPHIRE</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 100,000</div>
+          </div>
+
+          <div class="chain-step active">
+            <div class="chain-marker" aria-hidden="true"></div>
+            <div class="chain-node">
+              <img class="rank-img" src="assets/ranks/rank/Amethyst.png" alt="" />
+              <img class="level-img" src="assets/ranks/vip-level-9.png" alt="" />
+            </div>
+            <div class="chain-name">AMETHYST</div>
+            <div class="chain-sub">Total Deposit</div>
+            <div class="chain-amt">RM 200,000</div>
+          </div>
         </div>
-        <div class="name">BRONZE</div>
-        <div class="deposit">RM 0</div>
       </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Silver.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-2.png" alt="" />
-        </div>
-        <div class="name">SILVER</div>
-        <div class="deposit">RM 500</div>
-      </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Gold.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-3.png" alt="" />
-        </div>
-        <div class="name">GOLD</div>
-        <div class="deposit">RM 2,000</div>
-      </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Platinum.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-4.png" alt="" />
-        </div>
-        <div class="name">PLATINUM</div>
-        <div class="deposit">RM 5,000</div>
-      </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Diamond.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-5.png" alt="" />
-        </div>
-        <div class="name">DIAMOND</div>
-        <div class="deposit">RM 10,000</div>
-      </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Emarald.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-6.png" alt="" />
-        </div>
-        <div class="name">EMERALD</div>
-        <div class="deposit">RM 20,000</div>
-      </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Ruby.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-7.png" alt="" />
-        </div>
-        <div class="name">RUBY</div>
-        <div class="deposit">RM 50,000</div>
-      </div>
-      <div class="tier">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Sapphire.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-8.png" alt="" />
-        </div>
-        <div class="name">SAPPHIRE</div>
-        <div class="deposit">RM 100,000</div>
-      </div>
-      <div class="tier royal">
-        <div class="tier-media">
-          <img class="rank-img" src="assets/ranks/rank/Amethyst.png" alt="" />
-          <img class="level-img" src="assets/ranks/vip-level-9.png" alt="" />
-        </div>
-        <div class="name">AMETHYST</div>
-        <div class="deposit">RM 200,000</div>
-      </div>
+      <div class="chain-hint" aria-hidden="true">Swipe to explore tiers</div>
     </section>
 
     <!-- ============== TIER BENEFIT OVERVIEW ============== -->
-    <div class="section-banner">━━&nbsp; VIP TIER BENEFIT OVERVIEW &nbsp;━━</div>
+    <div class="section-banner banner-strip">
+      <span class="strip-dash">━━</span>
+      <span class="strip-text">VIP TIER BENEFIT OVERVIEW</span>
+      <span class="strip-dash">━━</span>
+    </div>
 
     <div class="table-wrap">
       <table class="benefit">
@@ -274,6 +330,109 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Mobile stacked card version of the benefits table -->
+    <div class="benefit-cards" aria-hidden="false">
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Bronze.png" alt="" />
+          <div class="bc-name">BRONZE</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM88</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val bc-val-dash">—</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM100</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Silver.png" alt="" />
+          <div class="bc-name">SILVER</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM188</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM68</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM188</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Gold.png" alt="" />
+          <div class="bc-name">GOLD</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM388</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM188</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM288</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Platinum.png" alt="" />
+          <div class="bc-name">PLATINUM</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM588</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM288</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM388</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Diamond.png" alt="" />
+          <div class="bc-name">DIAMOND</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM888</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM388</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM488</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Emarald.png" alt="" />
+          <div class="bc-name">EMERALD</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM1,288</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM588</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM688</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Ruby.png" alt="" />
+          <div class="bc-name">RUBY</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM1,888</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM888</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM988</span></div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Sapphire.png" alt="" />
+          <div class="bc-name">SAPPHIRE</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM2,888</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM1,288</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM1,388</span></div>
+        </div>
+      </div>
+      <div class="benefit-card royal">
+        <div class="bc-head">
+          <img class="bc-rank" src="assets/ranks/rank/Amethyst.png" alt="" />
+          <div class="bc-name">AMETHYST</div>
+        </div>
+        <div class="bc-rows">
+          <div class="bc-row"><span class="bc-label">Upgrade Bonus</span><span class="bc-val">RM3,888</span></div>
+          <div class="bc-row"><span class="bc-label">Monthly Bonus</span><span class="bc-val">RM1,888</span></div>
+          <div class="bc-row"><span class="bc-label">Birthday Bonus</span><span class="bc-val">RM1,888</span></div>
+        </div>
+      </div>
     </div>
 
     <!-- ============== TERMS ============== -->

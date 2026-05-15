@@ -353,10 +353,46 @@ body {
   color: var(--gold);
 }
 
+/* Gold-strip variant: matches the 100cuci reference — a solid gold band
+   with dark text, used as a header bar directly above the benefits table */
+.section-banner.banner-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 28px 0 10px;
+  padding: 12px 18px;
+  background: linear-gradient(180deg, #ffd552 0%, #f1b300 100%);
+  color: #1a1100;
+  border-radius: 6px 6px 0 0;
+  box-shadow:
+    0 6px 14px -10px rgba(255, 193, 7, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  font-size: 18px;
+  letter-spacing: 0.22em;
+}
+.section-banner.banner-strip .strip-text {
+  color: #1a1100;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.section-banner.banner-strip .strip-dash {
+  color: rgba(26, 17, 0, 0.65);
+  letter-spacing: 0;
+}
+/* When the banner-strip sits directly above the table, merge them into one band */
+.section-banner.banner-strip + .table-wrap {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.section-banner.banner-strip + .table-wrap table.benefit thead th {
+  border-radius: 0;
+}
+
 /* ===================== PROGRESS PANEL ===================== */
 .progress-panel {
   border: 1px solid var(--gold);
-  border-radius: 6px;
+  border-radius: 14px;
   background:
     radial-gradient(
       600px 200px at 50% 0%,
@@ -369,134 +405,280 @@ body {
       transparent 1px 18px
     ),
     #0a0a0a;
-  padding: 22px 26px 28px;
-}
-.progress-grid {
+  padding: 18px;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 28px;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* --- Rank Banner (left vertical card on desktop) --- */
+.rank-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-.royal-block {
+  justify-content: center;
+  gap: 18px;
+  padding: 32px 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 120% at 50% 30%, #6b2a8a 0%, #3d1456 50%, #1a0a2e 100%);
+  border: 1px solid rgba(255, 193, 7, 0.35);
+  box-shadow:
+    0 10px 28px -12px rgba(120, 40, 180, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   text-align: center;
-  border-right: 1px solid #2a2419;
-  padding-right: 10px;
 }
-.crown-svg {
-  width: 70px;
-  height: 60px;
-  margin: 0 auto;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.55));
+.rank-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1.5px)
+      0 0 / 18px 18px;
+  -webkit-mask: linear-gradient(110deg, #000 30%, transparent 80%);
+          mask: linear-gradient(110deg, #000 30%, transparent 80%);
+  opacity: 0.5;
+  pointer-events: none;
 }
-.rank-emblem {
-  width: 130px;
-  height: 130px;
-  margin: 0 auto;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.65));
-  transform-origin: center bottom;
-  animation: crownHover 5s ease-in-out infinite;
-  transition: transform 0.35s cubic-bezier(0.2, 1.4, 0.3, 1), filter 0.35s ease;
+.rank-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 50%,
+    rgba(255, 213, 82, 0.10) 60%,
+    rgba(255, 213, 82, 0.20) 64%,
+    rgba(255, 213, 82, 0.10) 68%,
+    transparent 78%
+  );
+  pointer-events: none;
 }
-.royal-block:hover .rank-emblem {
-  transform: translateY(-4px) scale(1.05) rotate(-3deg);
-  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.75));
+.rank-banner-text {
+  position: relative;
+  z-index: 2;
 }
-.royal-text {
+.rank-banner-name {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
   font-size: 44px;
-  letter-spacing: 0.12em;
-  color: var(--gold);
+  letter-spacing: 0.08em;
   line-height: 1;
-  margin-top: 8px;
-  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, #fff6b8 0%, #ffd552 50%, #b87b00 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
 }
-.royal-sub {
-  margin-top: 8px;
-  display: flex;
+.rank-banner-sub {
+  margin-top: 10px;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   font-family: "Oswald", sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: 0.4em;
-  color: #f3f3f3;
+  color: #f0e8ff;
 }
-.royal-sub::before,
-.royal-sub::after {
+.rank-banner-sub::before,
+.rank-banner-sub::after {
   content: "★";
   color: var(--gold);
   font-size: 12px;
 }
+.rank-banner-art {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rank-emblem {
+  width: 170px;
+  height: 170px;
+  display: block;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 10px 22px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 30px rgba(255, 213, 82, 0.35));
+  transform-origin: center bottom;
+  animation: crownHover 5s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.2, 1.4, 0.3, 1), filter 0.35s ease;
+}
+.rank-banner:hover .rank-emblem {
+  transform: translateY(-4px) scale(1.05) rotate(-3deg);
+  filter:
+    drop-shadow(0 14px 24px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 40px rgba(255, 213, 82, 0.55));
+}
 
+/* --- Bonus grid (2 top + 1 wide; sits in right column on desktop) --- */
 .bonuses {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 14px;
+  align-content: stretch;
+  min-width: 0;
 }
 .bonus {
-  text-align: center;
-  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #181818 0%, #0e0e0e 100%);
+  border: 1px solid rgba(255, 193, 7, 0.22);
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  min-width: 0;
+  overflow: hidden;
+}
+.bonus:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 193, 7, 0.5);
+  box-shadow: 0 10px 24px -14px rgba(255, 193, 7, 0.45);
+}
+/* Small (top-row) bonus cards: horizontal at desktop — label/amount on left, compact Claim button on right */
+@media (min-width: 821px) {
+  .bonus:not(.bonus-wide) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .bonus:not(.bonus-wide) .bonus-text {
+    gap: 4px;
+  }
+  .bonus:not(.bonus-wide) .bonus-action {
+    min-width: 88px;
+    padding: 8px 18px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+}
+
+.bonus-wide {
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+}
+.bonus-wide .bonus-text {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+.bonus-wide .bonus-amt {
+  flex: 0 0 auto;
+  order: 2;
+}
+.bonus-wide .bonus-gift {
+  order: 3;
+  margin-left: auto;
+}
+.bonus-gift {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.45));
+  transform: rotate(-6deg);
+  transition: transform 0.35s cubic-bezier(0.2, 1.4, 0.3, 1);
+}
+.bonus-gift svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.bonus-wide:hover .bonus-gift {
+  transform: rotate(-2deg) scale(1.06);
+}
+.bonus-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 .bonus-label {
   font-family: "Oswald", sans-serif;
   font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.18em;
+  font-size: 15px;
+  letter-spacing: 0.14em;
   color: #ffffff;
+  text-transform: uppercase;
 }
 .bonus-rm {
-  margin-top: 14px;
   font-family: "Oswald", sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--gold);
-  letter-spacing: 0.05em;
+  margin-right: 4px;
 }
 .bonus-amt {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
-  font-size: 38px;
+  font-size: 26px;
   color: var(--gold);
-  line-height: 1;
-  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+}
+.bonus-amt-lg {
+  font-size: 30px;
+}
+.bonus-hint {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #b8b8b8;
+}
+.bonus-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+.bonus-link:hover {
+  text-decoration: underline;
 }
 .bonus-action {
-  margin-top: 14px;
-  display: inline-block;
-  padding: 10px 20px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
   font-family: "Oswald", sans-serif;
   font-weight: 700;
   font-size: 13px;
-  letter-spacing: 0.15em;
-  border-radius: 3px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 999px;
   border: 1px solid transparent;
   cursor: pointer;
-  min-width: 140px;
-  transition:
-    transform 0.15s ease,
-    background 0.15s ease,
-    color 0.15s ease;
+  min-width: 110px;
+  transition: transform 0.15s ease, background 0.15s ease,
+    color 0.15s ease, box-shadow 0.2s ease;
 }
 .bonus-action.primary {
-  background: linear-gradient(180deg, #ffd552 0%, #f1b300 100%);
-  color: #1a1100;
+  background: linear-gradient(180deg, #4cd964 0%, #2faa44 100%);
+  color: #ffffff;
   box-shadow:
-    0 4px 14px -6px rgba(255, 193, 7, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    0 6px 16px -6px rgba(76, 217, 100, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 .bonus-action.primary:hover {
   transform: translateY(-1px);
+  box-shadow:
+    0 10px 22px -8px rgba(76, 217, 100, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 .bonus-action.ghost {
   background: transparent;
-  color: #ddd;
-  border-color: #3a3a3a;
+  color: #888;
+  border-color: #2f2f2f;
   cursor: not-allowed;
 }
 .bonus-action.outline {
@@ -515,64 +697,106 @@ body {
   box-shadow: none;
 }
 
-/* ===================== TIER OVERVIEW ===================== */
-.tiers {
+/* ===================== TIER CHAIN (rank progression) ===================== */
+.tier-chain {
+  position: relative;
+  padding: 6px 0 0;
+}
+.chain-scroll {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  /* Avoid clipping the hover scale of the rank images */
+  padding: 16px 8px 22px;
+}
+.chain-scroll::-webkit-scrollbar { display: none; }
+
+.chain-track {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 0;
+  align-items: start;
+  min-width: 100%;
 }
-.tier {
-  background: linear-gradient(180deg, #131313 0%, #0a0a0a 100%);
-  border: 1px solid #1f1a10;
-  border-radius: 8px;
-  padding: 14px 6px 14px;
+
+.chain-line {
+  position: absolute;
+  top: 46px; /* aligned to chain-node center (node height / 2) */
+  left: 5.5%;
+  right: 5.5%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 193, 7, 0) 0%,
+    rgba(255, 193, 7, 0.75) 18%,
+    var(--gold) 50%,
+    rgba(255, 193, 7, 0.75) 82%,
+    rgba(255, 193, 7, 0) 100%
+  );
+  background-size: 200% 100%;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.45);
+  z-index: 0;
+  pointer-events: none;
+  animation: chainLineFlow 6s linear infinite;
+}
+@keyframes chainLineFlow {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.chain-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease;
-  cursor: pointer;
+  padding: 0 4px;
+  scroll-snap-align: center;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.tier:hover {
-  transform: translateY(-2px);
-  border-color: #3a2f15;
+.chain-step:hover {
+  transform: translateY(-3px);
+  z-index: 5;
 }
-.tier .medal {
-  width: 64px;
-  height: 64px;
+
+.chain-node {
+  position: relative;
+  width: 92px;
+  height: 92px;
   margin: 0 auto 10px;
   border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #1c1c1c 0%, #050505 85%);
+  border: 2px solid rgba(255, 193, 7, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  background: radial-gradient(circle at 50% 35%, #2a2a2a 0%, #0a0a0a 80%);
-  border: 2px solid #3a3a3a;
-}
-.tier .medal svg {
-  width: 38px;
-  height: 38px;
-}
-.tier .tier-media {
-  position: relative;
-  width: 84px;
-  height: 84px;
-  margin: 0 auto 8px;
   overflow: visible;
-  z-index: 1;
+  box-shadow:
+    0 6px 16px -8px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
 }
-.tier .tier-media .rank-img,
-.tier .tier-media .level-img {
+.chain-node .rank-img,
+.chain-node .level-img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
   display: block;
   object-fit: contain;
   transform-origin: center center;
   will-change: transform, opacity, filter;
 }
-.tier .tier-media .rank-img {
+.chain-node .rank-img {
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.55));
   transition:
     opacity 0.35s ease,
@@ -581,7 +805,7 @@ body {
   opacity: 1;
   transform: scale(1) rotate(0deg);
 }
-.tier .tier-media .level-img {
+.chain-node .level-img {
   filter:
     drop-shadow(0 10px 22px rgba(0, 0, 0, 0.6))
     drop-shadow(0 0 0 rgba(255, 200, 60, 0));
@@ -593,102 +817,115 @@ body {
   transform: scale(0.3) rotate(-180deg);
   pointer-events: none;
 }
-.tier:hover {
-  z-index: 5;
+.chain-step:hover .chain-node {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--gold);
+  box-shadow:
+    0 14px 26px -10px rgba(0, 0, 0, 0.9),
+    0 0 0 3px rgba(255, 193, 7, 0.18),
+    0 0 30px rgba(255, 193, 7, 0.45);
 }
-.tier:hover .tier-media {
-  z-index: 5;
-}
-.tier:hover .tier-media .rank-img {
+.chain-step:hover .chain-node .rank-img {
   opacity: 0;
   transform: scale(0.4) rotate(180deg);
   transition:
     opacity 0.3s ease,
     transform 0.5s cubic-bezier(0.6, -0.4, 0.4, 1);
 }
-.tier:hover .tier-media .level-img {
+.chain-step:hover .chain-node .level-img {
   opacity: 1;
-  transform: scale(1.65) rotate(0deg);
+  transform: scale(1.5) rotate(0deg);
   filter:
     drop-shadow(0 16px 28px rgba(0, 0, 0, 0.7))
     drop-shadow(0 0 24px rgba(255, 200, 60, 0.45));
   animation: levelImgFloat 2.4s ease-in-out 0.55s infinite;
 }
-.tier.royal:hover .tier-media .level-img {
-  filter:
-    drop-shadow(0 16px 28px rgba(0, 0, 0, 0.7))
-    drop-shadow(0 0 30px rgba(255, 193, 7, 0.7));
-}
 @keyframes levelImgFloat {
-  0%, 100% { transform: scale(1.65) rotate(-2deg) translateY(0); }
-  50%      { transform: scale(1.7)  rotate(2deg)  translateY(-6px); }
+  0%, 100% { transform: scale(1.5) rotate(-2deg) translateY(0); }
+  50%      { transform: scale(1.55) rotate(2deg)  translateY(-6px); }
 }
-.tier .name {
+
+/* Active tier (the user's current rank) */
+.chain-step.active .chain-node {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 3px rgba(255, 193, 7, 0.2),
+    0 0 26px rgba(255, 193, 7, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: chainActivePulse 2.6s ease-in-out infinite;
+}
+@keyframes chainActivePulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(255, 193, 7, 0.2),
+      0 0 22px rgba(255, 193, 7, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(255, 193, 7, 0.32),
+      0 0 40px rgba(255, 193, 7, 0.75),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+}
+.chain-step.active .chain-name { color: var(--gold); }
+.chain-step.active .chain-amt  { color: var(--gold-soft); }
+
+/* Pointer / triangle above the active tier */
+.chain-marker {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 9px solid var(--gold);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.7));
+  z-index: 4;
+  animation: chainMarkerBob 1.8s ease-in-out infinite;
+}
+@keyframes chainMarkerBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-4px); }
+}
+
+.chain-name {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
   font-size: 13px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   color: #f0f0f0;
+  margin-top: 2px;
 }
-.tier .deposit {
-  margin-top: 6px;
+.chain-sub {
+  margin-top: 4px;
   font-family: "Inter", sans-serif;
+  font-style: italic;
   font-weight: 500;
-  font-size: 12px;
-  color: #b8b8b8;
+  font-size: 11px;
+  color: #8a8a8a;
 }
-/* medal palettes */
-.medal-regular {
-  background: radial-gradient(circle at 50% 35%, #4a4a4a 0%, #1a1a1a 80%);
-  border-color: #5a5a5a;
+.chain-amt {
+  margin-top: 2px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: #cfcfcf;
 }
-.medal-bronze {
-  background: radial-gradient(circle at 50% 35%, #b77a3a 0%, #4a2a10 80%);
-  border-color: #8a5a2a;
-}
-.medal-silver {
-  background: radial-gradient(circle at 50% 35%, #d0d0d0 0%, #5a5a5a 80%);
-  border-color: #aaa;
-}
-.medal-gold {
-  background: radial-gradient(circle at 50% 35%, #ffd552 0%, #8a5a00 80%);
-  border-color: #ffc107;
-}
-.medal-plat {
-  background: radial-gradient(circle at 50% 35%, #5a6a7a 0%, #1a2a3a 80%);
-  border-color: #6a7a8a;
-}
-.medal-diamond {
-  background: radial-gradient(circle at 50% 35%, #4a6fb0 0%, #0a1a3a 80%);
-  border-color: #2a4a8a;
-}
-.medal-elite {
-  background: radial-gradient(circle at 50% 35%, #6a3a8a 0%, #2a0a4a 80%);
-  border-color: #4a1a6a;
-}
-.medal-master {
-  background: radial-gradient(circle at 50% 35%, #b04020 0%, #4a0a00 80%);
-  border-color: #8a2010;
-}
-.medal-royal {
-  background: radial-gradient(circle at 50% 35%, #ffd552 0%, #8a5a00 80%);
-  border-color: var(--gold);
-  box-shadow:
-    0 0 0 2px rgba(255, 193, 7, 0.15),
-    0 0 24px rgba(255, 193, 7, 0.4);
-}
-.tier.royal {
-  border: 2px solid var(--gold);
-  box-shadow:
-    0 0 0 1px rgba(255, 193, 7, 0.25),
-    0 0 30px -4px rgba(255, 193, 7, 0.35);
-  background: linear-gradient(180deg, #1c1607 0%, #0c0a05 100%);
-}
-.tier.royal .name {
+
+.chain-hint {
+  display: none;
+  margin: 4px auto 0;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--gold);
-}
-.tier.royal .deposit {
-  color: var(--gold-soft);
+  opacity: 0.75;
 }
 
 /* ===================== TABLE ===================== */
@@ -752,6 +989,83 @@ table.benefit tbody td.lvl {
   height: 2px;
   background: #5a5a5a;
   vertical-align: middle;
+}
+
+/* ===================== BENEFIT CARDS (mobile) ===================== */
+/* Hidden by default — swapped in for the table on small viewports */
+.benefit-cards {
+  display: none;
+  margin-top: 6px;
+  flex-direction: column;
+  gap: 10px;
+}
+.benefit-card {
+  border: 1px solid #2a2419;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #101010 0%, #070707 100%);
+}
+.benefit-card .bc-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #ffd552 0%, #f1b300 100%);
+}
+.benefit-card .bc-rank {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+.benefit-card .bc-name {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  color: #1a1100;
+}
+.benefit-card .bc-rows {
+  display: flex;
+  flex-direction: column;
+}
+.benefit-card .bc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 14px;
+  border-top: 1px solid #1a1a1a;
+}
+.benefit-card .bc-row:first-child {
+  border-top: none;
+}
+.benefit-card .bc-label {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #b8b8b8;
+  text-transform: uppercase;
+}
+.benefit-card .bc-val {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: #ececec;
+}
+.benefit-card .bc-val-dash {
+  color: #6a6a6a;
+  font-weight: 500;
+}
+.benefit-card.royal {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 1px rgba(255, 193, 7, 0.25),
+    0 0 22px -6px rgba(255, 193, 7, 0.4);
+}
+.benefit-card.royal .bc-val {
+  color: var(--gold-soft);
 }
 
 /* ===================== TERMS ===================== */
@@ -871,12 +1185,29 @@ table.benefit tbody td.lvl {
   .tagline {
     font-size: 15px;
   }
-  .progress-grid {
-    grid-template-columns: 240px 1fr;
-    gap: 22px;
+  .progress-panel {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .rank-banner {
+    padding: 24px 22px;
+  }
+  .rank-banner-name {
+    font-size: 36px;
+  }
+  .rank-emblem {
+    width: 130px;
+    height: 130px;
   }
   .bonus-amt {
-    font-size: 32px;
+    font-size: 22px;
+  }
+  .bonus-amt-lg {
+    font-size: 26px;
+  }
+  .bonus-gift {
+    width: 56px;
+    height: 56px;
   }
 }
 
@@ -969,60 +1300,105 @@ table.benefit tbody td.lvl {
     letter-spacing: 0.22em;
     margin: 22px 0 14px;
   }
-
-  .progress-panel {
-    padding: 20px 18px;
-  }
-  .progress-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .royal-block {
-    border-right: none;
-    border-bottom: 1px solid #2a2419;
-    padding: 0 0 16px;
-  }
-  .royal-text {
-    font-size: 36px;
-  }
-  .bonuses {
-    gap: 14px;
-  }
-  .bonus-amt {
-    font-size: 30px;
-  }
-  .bonus-action {
-    min-width: 0;
-    width: 100%;
-    padding: 10px 12px;
-  }
-
-  .tiers {
-    grid-template-columns: repeat(3, 1fr);
+  .section-banner.banner-strip {
+    padding: 10px 14px;
+    font-size: 15px;
+    letter-spacing: 0.18em;
     gap: 10px;
   }
-  .tier {
-    padding: 14px 8px;
+
+  .progress-panel {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 14px;
+    align-items: stretch;
   }
-  .tier .medal {
-    width: 60px;
-    height: 60px;
+  .bonuses {
+    grid-auto-rows: auto;
   }
-  .tier .medal svg {
-    width: 34px;
-    height: 34px;
+  .rank-banner {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 22px;
+    border-radius: 12px;
+    text-align: left;
   }
-  .tier .tier-media {
-    width: 72px;
-    height: 72px;
+  .rank-banner-text {
+    text-align: left;
+  }
+  .rank-banner-name {
+    font-size: 38px;
+  }
+  .rank-banner-sub {
+    font-size: 14px;
+    letter-spacing: 0.32em;
+  }
+  .rank-emblem {
+    width: 120px;
+    height: 120px;
+  }
+  .bonuses {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+  .bonus {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .bonus-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .bonus-rm {
+    font-size: 13px;
+  }
+  .bonus-amt {
+    font-size: 18px;
+  }
+  .bonus-amt-lg {
+    font-size: 22px;
+  }
+  .bonus-hint {
+    font-size: 12px;
+  }
+  .bonus-action {
+    min-width: 78px;
+    padding: 7px 14px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+  .bonus-action {
+    min-width: 96px;
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+  .bonus-gift {
+    width: 56px;
+    height: 56px;
   }
 
-  .table-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  /* Chain on tablet: keep 9-column row but let it scroll so each node has room */
+  .chain-track {
+    grid-template-columns: repeat(9, minmax(110px, 1fr));
+    min-width: max(100%, 990px);
   }
-  table.benefit {
-    min-width: 540px;
+  .chain-line {
+    top: 42px;
+  }
+  .chain-node {
+    width: 84px;
+    height: 84px;
+  }
+  .chain-hint {
+    display: block;
+  }
+
+  /* Mobile: swap table for stacked cards */
+  .table-wrap {
+    display: none;
+  }
+  .benefit-cards {
+    display: flex;
   }
 
   .terms {
@@ -1108,85 +1484,163 @@ table.benefit tbody td.lvl {
     font-size: 15px;
     letter-spacing: 0.16em;
   }
-
-  .progress-panel {
-    padding: 18px 14px;
-  }
-  .royal-text {
-    font-size: 30px;
-    letter-spacing: 0.1em;
-  }
-  .royal-sub {
-    font-size: 14px;
-    letter-spacing: 0.32em;
-  }
-  .crown-svg {
-    width: 60px;
-    height: 48px;
-  }
-  .rank-emblem {
-    width: 110px;
-    height: 110px;
-  }
-  .bonuses {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .bonus {
-    padding: 10px 4px;
-  }
-  .bonus-amt {
-    font-size: 32px;
-  }
-  .bonus-rm {
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  .bonus-action {
-    padding: 10px 14px;
-    font-size: 12px;
-  }
-
-  .tiers {
-    grid-template-columns: repeat(2, 1fr);
+  .section-banner.banner-strip {
+    padding: 9px 12px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
     gap: 8px;
   }
-  .tier {
-    padding: 12px 6px;
+  .section-banner.banner-strip .strip-dash {
+    display: none;
   }
-  .tier .medal {
-    width: 54px;
-    height: 54px;
-    margin-bottom: 8px;
+  /* Stacked-card view: banner-strip should keep top radius (no table below) */
+  .section-banner.banner-strip + .table-wrap + .benefit-cards {
+    margin-top: 10px;
   }
-  .tier .medal svg {
-    width: 30px;
-    height: 30px;
-  }
-  .tier .tier-media {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 6px;
-  }
-  .tier .name {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-  }
-  .tier .deposit {
-    font-size: 11px;
+  .section-banner.banner-strip {
+    border-radius: 6px;
   }
 
-  table.benefit {
-    min-width: 480px;
+  .progress-panel {
+    padding: 12px;
+    border-radius: 12px;
   }
-  table.benefit thead th {
-    padding: 12px 8px;
+  .rank-banner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    text-align: left;
+  }
+  .rank-banner-text {
+    text-align: left;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .rank-banner-art {
+    justify-content: flex-end;
+    order: 0;
+    flex: 0 0 auto;
+  }
+  .rank-banner-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .rank-banner-name {
+    font-size: 34px;
+  }
+  .rank-emblem {
+    width: 100px;
+    height: 100px;
+  }
+  .bonus {
+    padding: 14px;
+    gap: 10px;
+  }
+  /* Small (top-row) bonus cards: stack vertically in narrow 2-col grid */
+  .bonus:not(.bonus-wide) {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+  .bonus:not(.bonus-wide) .bonus-action {
+    align-self: stretch;
+    width: 100%;
+  }
+  /* Wide tier-upgrade: label/hint on top, amount + gift centered side-by-side below */
+  .bonus-wide {
+    display: grid;
+    grid-template-areas:
+      "text text"
+      "amt  gift";
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 10px;
+    flex-wrap: nowrap;
+  }
+  .bonus-wide .bonus-text {
+    grid-area: text;
+    justify-self: stretch;
+    text-align: left;
+    min-width: 0;
+  }
+  .bonus-wide .bonus-amt {
+    grid-area: amt;
+    margin: 0;
+    align-self: center;
+  }
+  .bonus-wide .bonus-gift {
+    grid-area: gift;
+    margin: 0;
+    width: 52px;
+    height: 52px;
+    align-self: center;
+  }
+  .bonus-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .bonus-rm {
+    font-size: 12px;
+  }
+  .bonus-amt {
+    font-size: 17px;
+  }
+  .bonus-amt-lg {
+    font-size: 20px;
+  }
+  .bonus-hint {
+    font-size: 11px;
+  }
+  .bonus-action {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Chain on phones: shrink nodes, keep scroll-snap so swipe feels nice */
+  .chain-track {
+    grid-template-columns: repeat(9, minmax(96px, 1fr));
+    min-width: max(100%, 864px);
+  }
+  .chain-line {
+    top: 36px;
+  }
+  .chain-node {
+    width: 72px;
+    height: 72px;
+  }
+  .chain-name {
     font-size: 12px;
     letter-spacing: 0.12em;
   }
-  table.benefit tbody td {
-    padding: 10px 8px;
-    font-size: 13px;
+  .chain-sub {
+    font-size: 10px;
+  }
+  .chain-amt {
+    font-size: 12px;
+  }
+
+  /* Benefit cards: tighten spacing */
+  .benefit-card .bc-head {
+    padding: 10px 12px;
+  }
+  .benefit-card .bc-name {
+    font-size: 15px;
+    letter-spacing: 0.14em;
+  }
+  .benefit-card .bc-row {
+    padding: 10px 12px;
+  }
+  .benefit-card .bc-label {
+    font-size: 12px;
+  }
+  .benefit-card .bc-val {
+    font-size: 14px;
   }
 
   .terms {
@@ -1286,66 +1740,99 @@ table.benefit tbody td.lvl {
   }
 
   .progress-panel {
-    padding: 14px 12px;
+    padding: 10px;
   }
-  .royal-text {
-    font-size: 26px;
+  .rank-banner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 14px 14px;
+    text-align: center;
   }
-  .royal-sub {
+  .rank-banner-text {
+    text-align: center;
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .rank-banner-art {
+    justify-content: center;
+    order: -1;
+  }
+  .rank-banner-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .rank-banner-name {
+    font-size: 28px;
+    letter-spacing: 0.06em;
+  }
+  .rank-banner-sub {
     font-size: 12px;
     letter-spacing: 0.26em;
   }
+  .rank-emblem {
+    width: 88px;
+    height: 88px;
+  }
+  .bonus {
+    padding: 12px;
+  }
   .bonus-amt {
-    font-size: 28px;
+    font-size: 22px;
+  }
+  .bonus-amt-lg {
+    font-size: 24px;
   }
   .bonus-rm {
     font-size: 14px;
   }
   .bonus-label {
     font-size: 12px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
   }
   .bonus-action {
     font-size: 11px;
-    padding: 9px 10px;
+    padding: 9px 12px;
+    letter-spacing: 0.14em;
+  }
+
+  /* Small mobile chain: smallest nodes */
+  .chain-track {
+    grid-template-columns: repeat(9, minmax(86px, 1fr));
+    min-width: max(100%, 774px);
+  }
+  .chain-line {
+    top: 31px;
+  }
+  .chain-node {
+    width: 62px;
+    height: 62px;
+  }
+  .chain-name {
+    font-size: 11px;
     letter-spacing: 0.1em;
   }
-
-  .tier {
-    padding: 10px 4px;
-  }
-  .tier .medal {
-    width: 48px;
-    height: 48px;
-  }
-  .tier .medal svg {
-    width: 26px;
-    height: 26px;
-  }
-  .tier .tier-media {
-    width: 54px;
-    height: 54px;
-    margin-bottom: 4px;
-  }
-  .tier .name {
+  .chain-amt {
     font-size: 11px;
-    letter-spacing: 0.08em;
   }
 
-  table.benefit {
-    min-width: 420px;
+  .benefit-card .bc-rank {
+    width: 30px;
+    height: 30px;
   }
-  table.benefit thead th {
-    padding: 10px 6px;
-    font-size: 10px;
-    letter-spacing: 0.08em;
+  .benefit-card .bc-name {
+    font-size: 14px;
+    letter-spacing: 0.12em;
   }
-  table.benefit tbody td {
-    padding: 9px 6px;
-    font-size: 12px;
+  .benefit-card .bc-row {
+    padding: 9px 12px;
   }
-  table.benefit tbody td.lvl {
-    letter-spacing: 0.08em;
+  .benefit-card .bc-label {
+    font-size: 11px;
+  }
+  .benefit-card .bc-val {
+    font-size: 13px;
   }
 
   .terms {
@@ -1505,6 +1992,20 @@ table.benefit tbody td.lvl {
 [data-theme="light"] .section-banner {
   color: #e10e1c;
 }
+[data-theme="light"] .section-banner.banner-strip {
+  background: linear-gradient(180deg, #ff3344 0%, #e10e1c 100%);
+  color: #ffffff;
+  box-shadow:
+    0 6px 14px -10px rgba(225, 14, 28, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+[data-theme="light"] .section-banner.banner-strip .strip-text {
+  color: #ffffff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+[data-theme="light"] .section-banner.banner-strip .strip-dash {
+  color: rgba(255, 255, 255, 0.7);
+}
 
 /* Progress panel */
 [data-theme="light"] .progress-panel {
@@ -1523,19 +2024,35 @@ table.benefit tbody td.lvl {
     #ffffff;
   box-shadow: 0 4px 18px -10px rgba(0, 0, 0, 0.08);
 }
-[data-theme="light"] .royal-block {
-  border-right-color: #f0d1d4;
+[data-theme="light"] .rank-banner {
+  background:
+    radial-gradient(120% 180% at 18% 50%, #8a3aa8 0%, #5a2080 45%, #2e0e4d 100%);
+  border-color: rgba(225, 14, 28, 0.35);
+  box-shadow:
+    0 10px 28px -12px rgba(120, 40, 180, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
-[data-theme="light"] .royal-text {
-  color: #e10e1c;
-  text-shadow: 0 2px 0 rgba(225, 14, 28, 0.12);
+[data-theme="light"] .rank-banner-name {
+  background: linear-gradient(180deg, #fff0a8 0%, #ffd552 50%, #b87b00 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
 }
-[data-theme="light"] .royal-sub {
-  color: #1a1a1a;
+[data-theme="light"] .rank-banner-sub {
+  color: #f6ecff;
 }
-[data-theme="light"] .royal-sub::before,
-[data-theme="light"] .royal-sub::after {
-  color: #e10e1c;
+[data-theme="light"] .rank-banner-sub::before,
+[data-theme="light"] .rank-banner-sub::after {
+  color: #ffd552;
+}
+[data-theme="light"] .bonus {
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-color: rgba(225, 14, 28, 0.18);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .bonus:hover {
+  border-color: rgba(225, 14, 28, 0.45);
+  box-shadow: 0 10px 24px -14px rgba(225, 14, 28, 0.35);
 }
 [data-theme="light"] .bonus-label {
   color: #1a1a1a;
@@ -1545,11 +2062,17 @@ table.benefit tbody td.lvl {
   color: #e10e1c;
   text-shadow: 0 2px 0 rgba(225, 14, 28, 0.1);
 }
+[data-theme="light"] .bonus-hint {
+  color: #6a6a6a;
+}
+[data-theme="light"] .bonus-link {
+  color: #e10e1c;
+}
 [data-theme="light"] .bonus-action.primary {
-  background: linear-gradient(180deg, #ff3344 0%, #e10e1c 100%);
+  background: linear-gradient(180deg, #4cd964 0%, #2faa44 100%);
   color: #ffffff;
   box-shadow:
-    0 4px 14px -6px rgba(225, 14, 28, 0.6),
+    0 6px 16px -6px rgba(76, 217, 100, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 [data-theme="light"] .bonus-action.ghost {
@@ -1571,33 +2094,105 @@ table.benefit tbody td.lvl {
   border-color: #d8d8d8;
 }
 
-/* Tiers */
-[data-theme="light"] .tier {
-  background: #ffffff;
-  border-color: #ececec;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+/* Tier chain */
+[data-theme="light"] .chain-line {
+  background: linear-gradient(
+    90deg,
+    rgba(225, 14, 28, 0) 0%,
+    rgba(225, 14, 28, 0.75) 18%,
+    #e10e1c 50%,
+    rgba(225, 14, 28, 0.75) 82%,
+    rgba(225, 14, 28, 0) 100%
+  );
+  box-shadow: 0 0 12px rgba(225, 14, 28, 0.4);
 }
-[data-theme="light"] .tier:hover {
-  border-color: #f0a8ad;
+[data-theme="light"] .chain-node {
+  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f3f3f3 85%);
+  border-color: rgba(225, 14, 28, 0.32);
+  box-shadow:
+    0 6px 16px -10px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-[data-theme="light"] .tier .name {
+[data-theme="light"] .chain-step:hover .chain-node {
+  border-color: #e10e1c;
+  box-shadow:
+    0 14px 26px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 3px rgba(225, 14, 28, 0.18),
+    0 0 30px rgba(225, 14, 28, 0.4);
+}
+[data-theme="light"] .chain-step.active .chain-node {
+  border-color: #e10e1c;
+  box-shadow:
+    0 0 0 3px rgba(225, 14, 28, 0.18),
+    0 0 26px rgba(225, 14, 28, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  animation: chainActivePulseLight 2.6s ease-in-out infinite;
+}
+@keyframes chainActivePulseLight {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(225, 14, 28, 0.18),
+      0 0 22px rgba(225, 14, 28, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(225, 14, 28, 0.28),
+      0 0 40px rgba(225, 14, 28, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+}
+[data-theme="light"] .chain-step.active .chain-name { color: #e10e1c; }
+[data-theme="light"] .chain-step.active .chain-amt  { color: #8a0610; }
+[data-theme="light"] .chain-marker {
+  border-top-color: #e10e1c;
+  filter: drop-shadow(0 0 6px rgba(225, 14, 28, 0.55));
+}
+[data-theme="light"] .chain-name {
   color: #1a1a1a;
 }
-[data-theme="light"] .tier .deposit {
-  color: #6a6a6a;
+[data-theme="light"] .chain-sub {
+  color: #8a8a8a;
 }
-[data-theme="light"] .tier.royal {
-  border: 2px solid #e10e1c;
-  background: linear-gradient(180deg, #fff5f6 0%, #ffffff 100%);
-  box-shadow:
-    0 0 0 1px rgba(225, 14, 28, 0.18),
-    0 0 24px -6px rgba(225, 14, 28, 0.28);
+[data-theme="light"] .chain-amt {
+  color: #404040;
 }
-[data-theme="light"] .tier.royal .name {
+[data-theme="light"] .chain-hint {
   color: #e10e1c;
 }
-[data-theme="light"] .tier.royal .deposit {
-  color: #8a0610;
+
+/* Benefit cards (mobile) */
+[data-theme="light"] .benefit-card {
+  background: #ffffff;
+  border-color: #f0d1d4;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .benefit-card .bc-head {
+  background: linear-gradient(180deg, #ff3344 0%, #e10e1c 100%);
+}
+[data-theme="light"] .benefit-card .bc-name {
+  color: #ffffff;
+}
+[data-theme="light"] .benefit-card .bc-row {
+  border-top-color: #ececec;
+}
+[data-theme="light"] .benefit-card .bc-label {
+  color: #6a6a6a;
+}
+[data-theme="light"] .benefit-card .bc-val {
+  color: #1a1a1a;
+}
+[data-theme="light"] .benefit-card .bc-val-dash {
+  color: #b8b8b8;
+}
+[data-theme="light"] .benefit-card.royal {
+  border-color: #e10e1c;
+  box-shadow:
+    0 0 0 1px rgba(225, 14, 28, 0.18),
+    0 0 22px -6px rgba(225, 14, 28, 0.3);
+}
+[data-theme="light"] .benefit-card.royal .bc-val {
+  color: #e10e1c;
 }
 
 /* Table */
@@ -1686,8 +2281,9 @@ table.benefit tbody td.lvl {
 
 /* Stagger children of revealed containers */
 .progress-panel.in-view .bonus,
-.tiers.in-view .tier,
+.tier-chain.in-view .chain-step,
 .benefit.in-view tbody tr,
+.benefit-cards.in-view .benefit-card,
 .terms.in-view .term {
   animation: fadeInUp 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -1697,16 +2293,28 @@ table.benefit tbody td.lvl {
 .progress-panel.in-view .bonus:nth-child(2) { animation-delay: 0.20s; }
 .progress-panel.in-view .bonus:nth-child(3) { animation-delay: 0.30s; }
 
-/* Member tier tiles stagger */
-.tiers.in-view .tier:nth-child(1) { animation-delay: 0.05s; }
-.tiers.in-view .tier:nth-child(2) { animation-delay: 0.10s; }
-.tiers.in-view .tier:nth-child(3) { animation-delay: 0.15s; }
-.tiers.in-view .tier:nth-child(4) { animation-delay: 0.20s; }
-.tiers.in-view .tier:nth-child(5) { animation-delay: 0.25s; }
-.tiers.in-view .tier:nth-child(6) { animation-delay: 0.30s; }
-.tiers.in-view .tier:nth-child(7) { animation-delay: 0.35s; }
-.tiers.in-view .tier:nth-child(8) { animation-delay: 0.40s; }
-.tiers.in-view .tier:nth-child(9) { animation-delay: 0.45s; }
+/* Tier chain stagger — left to right cascade
+   (chain-line is the first child of .chain-track, so steps start at nth-child(2)) */
+.tier-chain.in-view .chain-step:nth-child(2)  { animation-delay: 0.05s; }
+.tier-chain.in-view .chain-step:nth-child(3)  { animation-delay: 0.10s; }
+.tier-chain.in-view .chain-step:nth-child(4)  { animation-delay: 0.15s; }
+.tier-chain.in-view .chain-step:nth-child(5)  { animation-delay: 0.20s; }
+.tier-chain.in-view .chain-step:nth-child(6)  { animation-delay: 0.25s; }
+.tier-chain.in-view .chain-step:nth-child(7)  { animation-delay: 0.30s; }
+.tier-chain.in-view .chain-step:nth-child(8)  { animation-delay: 0.35s; }
+.tier-chain.in-view .chain-step:nth-child(9)  { animation-delay: 0.40s; }
+.tier-chain.in-view .chain-step:nth-child(10) { animation-delay: 0.45s; }
+
+/* Benefit cards (mobile) stagger */
+.benefit-cards.in-view .benefit-card:nth-child(1) { animation-delay: 0.05s; }
+.benefit-cards.in-view .benefit-card:nth-child(2) { animation-delay: 0.10s; }
+.benefit-cards.in-view .benefit-card:nth-child(3) { animation-delay: 0.15s; }
+.benefit-cards.in-view .benefit-card:nth-child(4) { animation-delay: 0.20s; }
+.benefit-cards.in-view .benefit-card:nth-child(5) { animation-delay: 0.25s; }
+.benefit-cards.in-view .benefit-card:nth-child(6) { animation-delay: 0.30s; }
+.benefit-cards.in-view .benefit-card:nth-child(7) { animation-delay: 0.35s; }
+.benefit-cards.in-view .benefit-card:nth-child(8) { animation-delay: 0.40s; }
+.benefit-cards.in-view .benefit-card:nth-child(9) { animation-delay: 0.45s; }
 
 /* Benefit table rows stagger */
 .benefit.in-view tbody tr:nth-child(1) { animation-delay: 0.05s; }
@@ -1733,8 +2341,9 @@ table.benefit tbody td.lvl {
     animation: none !important;
   }
   .progress-panel.in-view .bonus,
-  .tiers.in-view .tier,
+  .tier-chain.in-view .chain-step,
   .benefit.in-view tbody tr,
+  .benefit-cards.in-view .benefit-card,
   .terms.in-view .term {
     animation: none !important;
   }
@@ -1976,36 +2585,7 @@ table.benefit tbody td.lvl {
   box-shadow: 0 6px 18px -8px rgba(225,14,28,.35);
 }
 
-/* Tier cards — lift, glow, image gentle wiggle on hover */
-.tier {
-  transition:
-    transform .3s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow .3s ease,
-    border-color .25s ease,
-    background .3s ease;
-}
-.tier:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 16px 32px -14px rgba(0,0,0,.7), 0 0 0 1px rgba(255,193,7,.18);
-}
-[data-theme="light"] .tier:hover {
-  box-shadow: 0 16px 32px -14px rgba(0,0,0,.18), 0 0 0 1px rgba(225,14,28,.18);
-}
-
-.tier.royal {
-  animation: royalGlow 3s ease-in-out infinite;
-}
-@keyframes royalGlow {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255,193,7,.25), 0 0 30px -4px rgba(255,193,7,.35); }
-  50%      { box-shadow: 0 0 0 1px rgba(255,193,7,.45), 0 0 50px -2px rgba(255,193,7,.65); }
-}
-[data-theme="light"] .tier.royal {
-  animation: royalGlowLight 3s ease-in-out infinite;
-}
-@keyframes royalGlowLight {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(225,14,28,.18), 0 0 24px -6px rgba(225,14,28,.28); }
-  50%      { box-shadow: 0 0 0 1px rgba(225,14,28,.35), 0 0 42px -4px rgba(225,14,28,.55); }
-}
+/* (Chain hover/active rules are defined in the TIER CHAIN section above.) */
 
 /* Bonus tiles — subtle lift on hover */
 .bonus { transition: transform .25s ease; }
@@ -2043,7 +2623,9 @@ table.benefit tbody tr:hover {
   .crown-emblem, .crown-svg, .rank-emblem,
   .vip-title .vip,
   .hero::before, .hero::after,
-  .tier.royal {
+  .chain-step.active .chain-node,
+  .chain-marker,
+  .chain-line {
     animation: none !important;
   }
   .topbar, .logo, .nav a, .top-actions .btn-outline, .top-actions .btn-primary,

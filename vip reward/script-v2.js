@@ -88,7 +88,7 @@
 
   function initScrollReveal() {
     const targets = document.querySelectorAll(
-      '.hero, .section-banner, .progress-panel, .tiers, .benefit, .terms'
+      '.hero, .section-banner, .progress-panel, .tier-chain, .benefit, .benefit-cards, .terms'
     );
     targets.forEach(function (el) { el.classList.add('reveal'); });
 
@@ -180,20 +180,33 @@
   }
 
   function initTierTiles() {
-    const tiles = document.querySelectorAll('.tier');
-    tiles.forEach(function (tile) {
-      tile.addEventListener('click', function () {
-        const name = tile.querySelector('.name');
-        const deposit = tile.querySelector('.deposit');
+    const steps = document.querySelectorAll('.chain-step');
+    steps.forEach(function (step) {
+      step.addEventListener('click', function () {
+        const name = step.querySelector('.chain-name');
+        const amt = step.querySelector('.chain-amt');
         if (name) {
           console.log(
             '[VIP Reward v2] Tier selected:',
             name.textContent.trim(),
-            deposit ? '(' + deposit.textContent.trim() + ')' : ''
+            amt ? '(' + amt.textContent.trim() + ')' : ''
           );
         }
       });
     });
+
+    // On load, scroll the chain so the active tier is visible (right-aligned on small screens)
+    const scroller = document.querySelector('.chain-scroll');
+    const active = document.querySelector('.chain-step.active');
+    if (scroller && active) {
+      requestAnimationFrame(function () {
+        const sLeft = scroller.scrollLeft;
+        const sRect = scroller.getBoundingClientRect();
+        const aRect = active.getBoundingClientRect();
+        const targetLeft = sLeft + (aRect.left - sRect.left) - (sRect.width - aRect.width) / 2;
+        scroller.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+      });
+    }
   }
 
   function initNav() {
