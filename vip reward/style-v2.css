@@ -991,83 +991,6 @@ table.benefit tbody td.lvl {
   vertical-align: middle;
 }
 
-/* ===================== BENEFIT CARDS (mobile) ===================== */
-/* Hidden by default — swapped in for the table on small viewports */
-.benefit-cards {
-  display: none;
-  margin-top: 6px;
-  flex-direction: column;
-  gap: 10px;
-}
-.benefit-card {
-  border: 1px solid #2a2419;
-  border-radius: 10px;
-  overflow: hidden;
-  background: linear-gradient(180deg, #101010 0%, #070707 100%);
-}
-.benefit-card .bc-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  background: linear-gradient(180deg, #ffd552 0%, #f1b300 100%);
-}
-.benefit-card .bc-rank {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-}
-.benefit-card .bc-name {
-  font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.18em;
-  color: #1a1100;
-}
-.benefit-card .bc-rows {
-  display: flex;
-  flex-direction: column;
-}
-.benefit-card .bc-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 11px 14px;
-  border-top: 1px solid #1a1a1a;
-}
-.benefit-card .bc-row:first-child {
-  border-top: none;
-}
-.benefit-card .bc-label {
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: #b8b8b8;
-  text-transform: uppercase;
-}
-.benefit-card .bc-val {
-  font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.04em;
-  color: #ececec;
-}
-.benefit-card .bc-val-dash {
-  color: #6a6a6a;
-  font-weight: 500;
-}
-.benefit-card.royal {
-  border-color: var(--gold);
-  box-shadow:
-    0 0 0 1px rgba(255, 193, 7, 0.25),
-    0 0 22px -6px rgba(255, 193, 7, 0.4);
-}
-.benefit-card.royal .bc-val {
-  color: var(--gold-soft);
-}
-
 /* ===================== TERMS ===================== */
 .terms {
   margin-top: 22px;
@@ -1393,12 +1316,18 @@ table.benefit tbody td.lvl {
     display: block;
   }
 
-  /* Mobile: swap table for stacked cards */
-  .table-wrap {
-    display: none;
+  /* Mobile: keep the table as a table — shrink it so all 4 columns fit */
+  table.benefit thead th {
+    padding: 10px 6px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
   }
-  .benefit-cards {
-    display: flex;
+  table.benefit tbody td {
+    padding: 9px 6px;
+    font-size: 13px;
+  }
+  table.benefit tbody td.lvl {
+    letter-spacing: 0.08em;
   }
 
   .terms {
@@ -1492,13 +1421,6 @@ table.benefit tbody td.lvl {
   }
   .section-banner.banner-strip .strip-dash {
     display: none;
-  }
-  /* Stacked-card view: banner-strip should keep top radius (no table below) */
-  .section-banner.banner-strip + .table-wrap + .benefit-cards {
-    margin-top: 10px;
-  }
-  .section-banner.banner-strip {
-    border-radius: 6px;
   }
 
   .progress-panel {
@@ -1625,22 +1547,18 @@ table.benefit tbody td.lvl {
     font-size: 12px;
   }
 
-  /* Benefit cards: tighten spacing */
-  .benefit-card .bc-head {
-    padding: 10px 12px;
+  /* Phone-sized table: tighter still, all 4 columns must fit */
+  table.benefit thead th {
+    padding: 8px 4px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
   }
-  .benefit-card .bc-name {
-    font-size: 15px;
-    letter-spacing: 0.14em;
+  table.benefit tbody td {
+    padding: 8px 4px;
+    font-size: 11px;
   }
-  .benefit-card .bc-row {
-    padding: 10px 12px;
-  }
-  .benefit-card .bc-label {
-    font-size: 12px;
-  }
-  .benefit-card .bc-val {
-    font-size: 14px;
+  table.benefit tbody td.lvl {
+    letter-spacing: 0.05em;
   }
 
   .terms {
@@ -1817,22 +1735,18 @@ table.benefit tbody td.lvl {
     font-size: 11px;
   }
 
-  .benefit-card .bc-rank {
-    width: 30px;
-    height: 30px;
+  /* Small-phone table: smallest sizes that still keep all 4 columns visible */
+  table.benefit thead th {
+    padding: 7px 3px;
+    font-size: 9px;
+    letter-spacing: 0.04em;
   }
-  .benefit-card .bc-name {
-    font-size: 14px;
-    letter-spacing: 0.12em;
+  table.benefit tbody td {
+    padding: 7px 3px;
+    font-size: 10px;
   }
-  .benefit-card .bc-row {
-    padding: 9px 12px;
-  }
-  .benefit-card .bc-label {
-    font-size: 11px;
-  }
-  .benefit-card .bc-val {
-    font-size: 13px;
+  table.benefit tbody td.lvl {
+    letter-spacing: 0.03em;
   }
 
   .terms {
@@ -2161,40 +2075,6 @@ table.benefit tbody td.lvl {
   color: #e10e1c;
 }
 
-/* Benefit cards (mobile) */
-[data-theme="light"] .benefit-card {
-  background: #ffffff;
-  border-color: #f0d1d4;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
-}
-[data-theme="light"] .benefit-card .bc-head {
-  background: linear-gradient(180deg, #ff3344 0%, #e10e1c 100%);
-}
-[data-theme="light"] .benefit-card .bc-name {
-  color: #ffffff;
-}
-[data-theme="light"] .benefit-card .bc-row {
-  border-top-color: #ececec;
-}
-[data-theme="light"] .benefit-card .bc-label {
-  color: #6a6a6a;
-}
-[data-theme="light"] .benefit-card .bc-val {
-  color: #1a1a1a;
-}
-[data-theme="light"] .benefit-card .bc-val-dash {
-  color: #b8b8b8;
-}
-[data-theme="light"] .benefit-card.royal {
-  border-color: #e10e1c;
-  box-shadow:
-    0 0 0 1px rgba(225, 14, 28, 0.18),
-    0 0 22px -6px rgba(225, 14, 28, 0.3);
-}
-[data-theme="light"] .benefit-card.royal .bc-val {
-  color: #e10e1c;
-}
-
 /* Table */
 [data-theme="light"] .table-wrap {
   border-color: #f0d1d4;
@@ -2283,7 +2163,6 @@ table.benefit tbody td.lvl {
 .progress-panel.in-view .bonus,
 .tier-chain.in-view .chain-step,
 .benefit.in-view tbody tr,
-.benefit-cards.in-view .benefit-card,
 .terms.in-view .term {
   animation: fadeInUp 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
@@ -2305,16 +2184,6 @@ table.benefit tbody td.lvl {
 .tier-chain.in-view .chain-step:nth-child(9)  { animation-delay: 0.40s; }
 .tier-chain.in-view .chain-step:nth-child(10) { animation-delay: 0.45s; }
 
-/* Benefit cards (mobile) stagger */
-.benefit-cards.in-view .benefit-card:nth-child(1) { animation-delay: 0.05s; }
-.benefit-cards.in-view .benefit-card:nth-child(2) { animation-delay: 0.10s; }
-.benefit-cards.in-view .benefit-card:nth-child(3) { animation-delay: 0.15s; }
-.benefit-cards.in-view .benefit-card:nth-child(4) { animation-delay: 0.20s; }
-.benefit-cards.in-view .benefit-card:nth-child(5) { animation-delay: 0.25s; }
-.benefit-cards.in-view .benefit-card:nth-child(6) { animation-delay: 0.30s; }
-.benefit-cards.in-view .benefit-card:nth-child(7) { animation-delay: 0.35s; }
-.benefit-cards.in-view .benefit-card:nth-child(8) { animation-delay: 0.40s; }
-.benefit-cards.in-view .benefit-card:nth-child(9) { animation-delay: 0.45s; }
 
 /* Benefit table rows stagger */
 .benefit.in-view tbody tr:nth-child(1) { animation-delay: 0.05s; }
@@ -2343,7 +2212,6 @@ table.benefit tbody td.lvl {
   .progress-panel.in-view .bonus,
   .tier-chain.in-view .chain-step,
   .benefit.in-view tbody tr,
-  .benefit-cards.in-view .benefit-card,
   .terms.in-view .term {
     animation: none !important;
   }

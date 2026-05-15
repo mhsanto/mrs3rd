@@ -88,7 +88,7 @@
 
   function initScrollReveal() {
     const targets = document.querySelectorAll(
-      '.hero, .section-banner, .progress-panel, .tier-chain, .benefit, .benefit-cards, .terms'
+      '.hero, .section-banner, .progress-panel, .tier-chain, .benefit, .terms'
     );
     targets.forEach(function (el) { el.classList.add('reveal'); });
 
