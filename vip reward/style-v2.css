@@ -1342,30 +1342,30 @@ table.benefit tbody td.lvl {
     gap: 12px;
   }
   .bonus {
-    padding: 12px 14px;
-    gap: 10px;
+    padding: 14px 16px;
+    gap: 12px;
   }
   .bonus-label {
-    font-size: 12px;
-    letter-spacing: 0.1em;
+    font-size: 14px;
+    letter-spacing: 0.12em;
   }
   .bonus-rm {
-    font-size: 13px;
+    font-size: 15px;
   }
   .bonus-amt {
-    font-size: 18px;
-  }
-  .bonus-amt-lg {
     font-size: 22px;
   }
+  .bonus-amt-lg {
+    font-size: 28px;
+  }
   .bonus-hint {
-    font-size: 12px;
+    font-size: 13px;
   }
   .bonus-action {
-    min-width: 78px;
-    padding: 7px 14px;
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    min-width: 88px;
+    padding: 9px 16px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
   }
   .bonus-action {
     min-width: 96px;
@@ -1580,26 +1580,26 @@ table.benefit tbody td.lvl {
     align-self: center;
   }
   .bonus-label {
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    font-size: 13px;
+    letter-spacing: 0.1em;
   }
   .bonus-rm {
-    font-size: 12px;
+    font-size: 14px;
   }
   .bonus-amt {
-    font-size: 17px;
-  }
-  .bonus-amt-lg {
     font-size: 20px;
   }
+  .bonus-amt-lg {
+    font-size: 24px;
+  }
   .bonus-hint {
-    font-size: 11px;
+    font-size: 12px;
   }
   .bonus-action {
     width: 100%;
-    padding: 8px 12px;
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    padding: 9px 14px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
   }
 
   /* Chain on phones: shrink nodes, keep scroll-snap so swipe feels nice */
