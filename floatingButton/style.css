@@ -112,6 +112,20 @@ html, body {
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
+    animation: fab-bob 8s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Continuous vertical drift — .fab is centered at top:50%, so translateY(0)
+   sits at viewport center. Drift only DOWNWARD toward the bottom and back. */
+@keyframes fab-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(40vh); }
+}
+
+/* Pause the bob while the menu is open so it doesn't fight the panel transition */
+.fab[data-open="true"] .fab-trigger-image {
+    animation-play-state: paused;
 }
 
 /* Show only the mascot that matches the active variant */
@@ -658,6 +672,7 @@ body:has(.fab[data-variant="stack"]) .variant-switch button.is-active {
 /* ============== Reduced motion ============== */
 @media (prefers-reduced-motion: reduce) {
     .fab-trigger-glow,
+    .fab-trigger-image,
     .fab-item,
     .fab-panel,
     .fab-trigger,
