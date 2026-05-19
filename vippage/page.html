@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VIP Reward System</title>
+
+  <!-- CSS intentionally removed for CMS use.
+       Add your CSS separately in the CMS stylesheet area or separate CSS file. -->
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ============== HERO ============== -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-art-left">
+          <img src="https://res.cloudinary.com/dmv3zhnpp/image/upload/v1778740006/BG-Cover_ledknn.png" alt="Slot machine" />
+        </div>
+
+        <div class="hero-center">
+          <img class="crown-emblem" src="https://res.cloudinary.com/dmv3zhnpp/image/upload/v1778740005/Crown_yt97bm.png" alt="" />
+          <div class="vip-title">
+            <span class="vip">VIP</span>
+            <span class="rs">REWARD&nbsp;SYSTEM</span>
+          </div>
+          <div class="tagline">
+            Unlock premium benefits and exclusive bonuses<br />crafted for our most loyal members.
+          </div>
+        </div>
+
+        <div class="hero-art-right">
+          <img src="https://res.cloudinary.com/dmv3zhnpp/image/upload/v1778740005/Cards_jlne39.png" alt="Cards" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== VIP PROGRESS STATUS ============== -->
+    <div class="section-banner">━━&nbsp; VIP PROGRESS STATUS &nbsp;━━</div>
+
+    <section class="progress-panel" id="progressPanel">
+      <div class="rank-banner">
+        <div class="rank-banner-text">
+          <div class="rank-banner-name" id="rankName">—</div>
+          <div class="rank-banner-sub">MEMBER</div>
+        </div>
+
+        <div class="rank-banner-art">
+          <img class="rank-emblem" id="rankEmblem" src="" alt="VIP Rank" style="visibility:hidden;" />
+        </div>
+      </div>
+
+      <div class="bonuses">
+        <div class="bonus">
+          <div class="bonus-text">
+            <div class="bonus-label">Monthly Bonus</div>
+            <div class="bonus-amt">
+              <span class="bonus-rm">RM</span><span id="monthlyAmt">0.00</span>
+            </div>
+          </div>
+          <button type="button" class="bonus-action ghost" data-bonus="monthly" disabled>Checking</button>
+        </div>
+
+        <div class="bonus">
+          <div class="bonus-text">
+            <div class="bonus-label">Birthday Bonus</div>
+            <div class="bonus-amt">
+              <span class="bonus-rm">RM</span><span id="birthdayAmt">0.00</span>
+            </div>
+          </div>
+          <button type="button" class="bonus-action ghost" data-bonus="birthday" disabled>Checking</button>
+        </div>
+
+        <div class="bonus bonus-wide">
+          <div class="bonus-text">
+            <div class="bonus-label">Tier Upgrade Bonus</div>
+            <div class="bonus-hint">
+              <em>*Auto Credit To Your Account.</em>
+            </div>
+          </div>
+
+          <div class="bonus-amt bonus-amt-lg">
+            <span class="bonus-rm">RM</span><span id="upgradeAmt">0.00</span>
+          </div>
+
+          <button type="button" class="bonus-action ghost" data-bonus="upgrade" disabled>Checking</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== MEMBER TIER OVERVIEW ============== -->
+    <div class="section-banner">━━&nbsp; MEMBER TIER OVERVIEW &nbsp;━━</div>
+
+    <section class="tier-chain">
+      <div class="chain-scroll">
+        <div class="chain-track" id="chainTrack">
+          <div class="chain-line" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="chain-hint" aria-hidden="true">Swipe to explore tiers</div>
+    </section>
+
+    <!-- ============== TIER BENEFIT OVERVIEW ============== -->
+    <div class="section-banner banner-strip">
+      <span class="strip-dash">━━</span>
+      <span class="strip-text">VIP TIER BENEFIT OVERVIEW</span>
+      <span class="strip-dash">━━</span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="benefit">
+        <thead>
+          <tr>
+            <th>LEVEL</th>
+            <th>UPGRADE BONUS</th>
+            <th>MONTHLY BONUS</th>
+            <th>BIRTHDAY BONUS</th>
+          </tr>
+        </thead>
+        <tbody id="benefitBody"></tbody>
+      </table>
+    </div>
+
+    <!-- ============== TERMS ============== -->
+    <section class="terms">
+      <div class="terms-title">
+        <span class="terms-line"></span>
+        <span class="terms-title-text">TERMS &amp; CONDITIONS</span>
+        <span class="terms-line"></span>
+      </div>
+      <div id="termsBody" class="terms-body">
+        <p class="terms-loading">Loading...</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /*
+      CMS-safe VIP script
+      - Uses real user ID from localStorage.USER.id
+      - Does NOT use username for eligibility/claim APIs
+      - Does not fail if CMS injects HTML after the first script run
+      - Does not call APIs repeatedly on duplicate CMS script execution
+      - Re-renders cached API data whenever CMS route replaces the page HTML
+    */
+
+    if (window.VIPRewardApp && typeof window.VIPRewardApp.boot === 'function') {
+      console.warn('[VIP] Script already exists. Re-booting render only for CMS route.');
+      window.VIPRewardApp.boot('duplicate-script');
+      return;
+    }
+
+    var API_BASE = 'https://staging-api.kinggroup44.com';
+    var SPECIAL_CODE = 'ChHL1FlAk8E2Cir1l1YfZA';
+
+    var VIP_TIER_URL = API_BASE + '/third-party/station-wallet-vip/' + encodeURIComponent(SPECIAL_CODE) + '/';
+    var ELIGIBILITY_URL_TEMPLATE = API_BASE + '/third-party/{USER_ID}/bonus_eligibility/' + encodeURIComponent(SPECIAL_CODE) + '/';
+    var TC_URL = API_BASE + '/settings/terms-and-conditions/public/9/';
+
+    var CLAIM_ENDPOINTS = {
+      monthly: API_BASE + '/third-party/claim-monthly/',
+      birthday: API_BASE + '/third-party/claim-birthday/',
+      upgrade: API_BASE + '/third-party/claim-upgrade/'
+    };
+
+    var state = {
+      bootCount: 0,
+      tierLoading: false,
+      tiers: null,
+      eligibilityLoading: false,
+      eligibility: null,
+      termsLoading: false,
+      termsText: null,
+      observer: null,
+      renderTimer: null,
+      userId: ''
+    };
+
+    function $(selector) {
+      return document.querySelector(selector);
+    }
+
+    function fmtRM(value) {
+      var n = parseFloat(value);
+      if (isNaN(n)) return '0.00';
+      return n.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function fmtDeposit(value) {
+      var n = parseFloat(value);
+      if (isNaN(n)) return '0';
+      return n.toLocaleString('en-US', {
+        minimumFractionDigits: n % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function safeText(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function safeUrl(url) {
+      if (!url) return '';
+      return String(url).replace(/^http:\/\//i, 'https://');
+    }
+
+    function getUserFromLocalStorage() {
+      try {
+        var raw = localStorage.getItem('USER');
+        if (!raw) return null;
+        return JSON.parse(raw);
+      } catch (e) {
+        console.warn('[VIP] Could not parse localStorage.USER:', e);
+        return null;
+      }
+    }
+
+    function getCurrentUserId() {
+      var user = getUserFromLocalStorage();
+      if (!user) return '';
+
+      if (user.id) return String(user.id).trim();
+      if (user.user_id) return String(user.user_id).trim();
+      if (user.userId) return String(user.userId).trim();
+
+      return '';
+    }
+
+    function getCurrentUsernameForDebugOnly() {
+      var user = getUserFromLocalStorage();
+      return user && user.username ? String(user.username).trim() : '';
+    }
+
+    function getVisibleUsernameFromPage() {
+      var el = $('.vc-username');
+      if (!el) return '';
+
+      var text = el.textContent || '';
+      var match = text.match(/Username\s*:?\s*([A-Za-z0-9_-]+)/i);
+      return match && match[1] ? match[1].trim() : '';
+    }
+
+    function debugCurrentUser() {
+      var user = getUserFromLocalStorage();
+      console.log('[VIP DEBUG] user.id:', user && user.id ? user.id : '(missing)');
+      console.log('[VIP DEBUG] username:', user && user.username ? user.username : '(missing)');
+      console.log('[VIP DEBUG] visible username:', getVisibleUsernameFromPage() || '(not rendered yet)');
+    }
+
+    function debounceRender() {
+      clearTimeout(state.renderTimer);
+      state.renderTimer = setTimeout(function () {
+        bindClaimButtons();
+        renderAll();
+      }, 80);
+    }
+
+    function ensureObserver() {
+      if (state.observer || !document.body) return;
+
+      state.observer = new MutationObserver(function () {
+        debounceRender();
+      });
+
+      state.observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    function hasVipDom() {
+      return !!(
+        document.getElementById('progressPanel') ||
+        document.getElementById('chainTrack') ||
+        document.getElementById('benefitBody') ||
+        document.getElementById('termsBody')
+      );
+    }
+
+    function startApiLoads() {
+      loadVIPData();
+      checkBonusEligibility(false);
+      loadTermsData();
+    }
+
+    function loadVIPData() {
+      if (state.tierLoading || state.tiers) {
+        renderAll();
+        return;
+      }
+
+      state.tierLoading = true;
+      console.log('[VIP] Calling API:', VIP_TIER_URL);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', VIP_TIER_URL, true);
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+
+        state.tierLoading = false;
+        console.log('[VIP] Tier API status:', xhr.status);
+
+        if (xhr.status === 200) {
+          try {
+            var tiers = JSON.parse(xhr.responseText);
+
+            if (Array.isArray(tiers) && tiers.length) {
+              state.tiers = tiers;
+              console.log('[VIP] Tiers loaded:', tiers.length);
+              renderAll();
+            } else {
+              console.warn('[VIP] Empty or invalid tier response:', tiers);
+            }
+          } catch (e) {
+            console.error('[VIP] Tier JSON parse failed:', e, xhr.responseText);
+          }
+        } else {
+          console.error('[VIP] Tier API failed:', xhr.status, xhr.responseText);
+        }
+      };
+
+      xhr.onerror = function () {
+        state.tierLoading = false;
+        console.error('[VIP] Tier API network/CORS error.');
+      };
+
+      xhr.send();
+    }
+
+    function renderProgressPanel(tiers) {
+      var nameEl = document.getElementById('rankName');
+      var emblemEl = document.getElementById('rankEmblem');
+      if (!nameEl && !emblemEl) return;
+
+      var top = tiers[tiers.length - 1];
+
+      if (nameEl) {
+        nameEl.textContent = String(top.name || 'VIP').toUpperCase();
+      }
+
+      if (emblemEl && top.icon) {
+        emblemEl.src = safeUrl(top.icon);
+        emblemEl.style.visibility = 'visible';
+      }
+    }
+
+    function renderTierChain(tiers) {
+      var track = document.getElementById('chainTrack');
+      if (!track) return;
+
+      var count = Array.isArray(tiers) ? tiers.length : 0;
+      if (!count) return;
+
+      var signature = tiers.map(function (tier) {
+        return [tier.name, tier.icon, tier.lifetime_deposit_required].join('|');
+      }).join('::');
+
+      /*
+       * Dynamic chain layout for CMS:
+       * Some old CSS used repeat(9, ...), so when the API returns only 2 tiers,
+       * the chain stays left aligned and leaves empty space. These inline styles
+       * override that fixed CSS and use the actual API tier count.
+       */
+      var minTierWidth = 118;
+      var minTrackWidth = Math.max(count * minTierWidth, 100);
+      var lineInsetPercent = count > 1 ? (50 / count) : 50;
+
+      track.style.display = 'grid';
+      track.style.gridTemplateColumns = 'repeat(' + count + ', minmax(' + minTierWidth + 'px, 1fr))';
+      track.style.minWidth = 'max(100%, ' + minTrackWidth + 'px)';
+      track.style.width = '100%';
+      track.style.setProperty('--vip-tier-count', String(count));
+      track.setAttribute('data-tier-count', String(count));
+
+      if (track.getAttribute('data-vip-render-signature') === signature) {
+        updateDynamicChainLine(track, count, lineInsetPercent);
+        return;
+      }
+      track.setAttribute('data-vip-render-signature', signature);
+
+      var line = track.querySelector('.chain-line');
+      track.innerHTML = '';
+      if (line) track.appendChild(line);
+      else {
+        line = document.createElement('div');
+        line.className = 'chain-line';
+        line.setAttribute('aria-hidden', 'true');
+        track.appendChild(line);
+      }
+
+      updateDynamicChainLine(track, count, lineInsetPercent);
+
+      for (var i = 0; i < tiers.length; i++) {
+        var tier = tiers[i];
+        var isActive = i === tiers.length - 1;
+        var step = document.createElement('div');
+        step.className = 'chain-step' + (isActive ? ' active' : '');
+
+        var html = '';
+        if (isActive) html += '<div class="chain-marker" aria-hidden="true"></div>';
+        html += '<div class="chain-node">';
+        html += '<img class="rank-img" src="' + safeUrl(tier.icon || '') + '" alt="' + safeText(tier.name || '') + '" />';
+        html += '<img class="level-img" src="' + safeUrl(tier.icon || '') + '" alt="" />';
+        html += '</div>';
+        html += '<div class="chain-name">' + safeText(String(tier.name || '').toUpperCase()) + '</div>';
+        html += '<div class="chain-sub">Total Deposit</div>';
+        html += '<div class="chain-amt">RM ' + fmtDeposit(tier.lifetime_deposit_required) + '</div>';
+
+        step.innerHTML = html;
+        track.appendChild(step);
+      }
+
+      console.log('[VIP] Chain rendered:', tiers.length, 'tiers');
+    }
+
+    function updateDynamicChainLine(track, count, lineInsetPercent) {
+      var line = track.querySelector('.chain-line');
+      if (!line) return;
+
+      if (count <= 1) {
+        line.style.display = 'none';
+        return;
+      }
+
+      line.style.display = 'block';
+      line.style.left = lineInsetPercent + '%';
+      line.style.right = lineInsetPercent + '%';
+    }
+
+    function renderBenefitTable(tiers) {
+      var tbody = document.getElementById('benefitBody');
+      if (!tbody) return;
+
+      var signature = tiers.map(function (tier) {
+        return [tier.name, tier.upgrade_bonus, tier.monthly_loyalty_bonus, tier.birthday_bonus].join('|');
+      }).join('::');
+
+      if (tbody.getAttribute('data-vip-render-signature') === signature) return;
+      tbody.setAttribute('data-vip-render-signature', signature);
+
+      tbody.innerHTML = '';
+
+      for (var i = 0; i < tiers.length; i++) {
+        var tier = tiers[i];
+        var row = document.createElement('tr');
+
+        row.innerHTML =
+          '<td class="lvl">' + safeText(String(tier.name || '').toUpperCase()) + '</td>' +
+          '<td>RM ' + fmtRM(tier.upgrade_bonus) + '</td>' +
+          '<td>RM ' + fmtRM(tier.monthly_loyalty_bonus) + '</td>' +
+          '<td>RM ' + fmtRM(tier.birthday_bonus) + '</td>';
+
+        tbody.appendChild(row);
+      }
+
+      console.log('[VIP] Table rendered:', tiers.length, 'rows');
+    }
+
+    function checkBonusEligibility(force) {
+      if (state.eligibilityLoading) return;
+      if (state.eligibility && !force) {
+        renderEligibility(state.eligibility);
+        return;
+      }
+
+      var userId = getCurrentUserId();
+      state.userId = userId;
+
+      if (!userId) {
+        console.warn('[VIP] User ID not found. Waiting for localStorage.USER.id.');
+        setAllBonusUnavailable('Login Required');
+        setTimeout(function () { checkBonusEligibility(force); }, 500);
+        return;
+      }
+
+      state.eligibilityLoading = true;
+
+      var url = ELIGIBILITY_URL_TEMPLATE.replace('{USER_ID}', encodeURIComponent(userId));
+      console.log('[VIP] Checking bonus eligibility:', url, 'username debug:', getCurrentUsernameForDebugOnly() || '(missing)');
+
+      fetch(url, { method: 'GET' })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Eligibility API failed: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          state.eligibilityLoading = false;
+          state.eligibility = data;
+          console.log('[VIP] Eligibility response:', data);
+          renderEligibility(data);
+        })
+        .catch(function (error) {
+          state.eligibilityLoading = false;
+          console.error('[VIP] Eligibility error:', error);
+          setAllBonusUnavailable('Not Available');
+        });
+    }
+
+    function renderEligibility(data) {
+      if (!data) return;
+      updateBonusUI('monthly', data.monthly_bonus);
+      updateBonusUI('birthday', data.birthday_bonus);
+      updateBonusUI('upgrade', data.upgrade_bonus);
+    }
+
+    function setAllBonusUnavailable(label) {
+      updateBonusUI('monthly', false, label);
+      updateBonusUI('birthday', false, label);
+      updateBonusUI('upgrade', false, label);
+    }
+
+    function updateBonusUI(type, value, disabledLabel) {
+      var amountMap = {
+        monthly: 'monthlyAmt',
+        birthday: 'birthdayAmt',
+        upgrade: 'upgradeAmt'
+      };
+
+      var button = document.querySelector('[data-bonus="' + type + '"]');
+      var amountEl = document.getElementById(amountMap[type]);
+      var canClaim = value !== false && value !== null && value !== undefined && value !== '';
+
+      if (amountEl) {
+        amountEl.textContent = canClaim ? fmtRM(value) : '0.00';
+      }
+
+      if (!button) return;
+
+      if (canClaim) {
+        button.disabled = false;
+        button.textContent = 'Claim';
+        button.classList.remove('ghost', 'claimed');
+        button.classList.add('primary');
+      } else {
+        button.disabled = true;
+        button.textContent = disabledLabel || 'Not Eligible';
+        button.classList.remove('primary', 'claimed');
+        button.classList.add('ghost');
+      }
+    }
+
+    function claimBonus(type) {
+      var endpoint = CLAIM_ENDPOINTS[type];
+      if (!endpoint) return;
+
+      var userId = getCurrentUserId();
+      if (!userId) {
+        alert('User ID not found. Please login again or refresh the page.');
+        return;
+      }
+
+      var button = document.querySelector('[data-bonus="' + type + '"]');
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Claiming...';
+      }
+
+      console.log('[VIP] Claiming bonus:', type, 'user_id:', userId, 'endpoint:', endpoint);
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          special_code: SPECIAL_CODE,
+          user_id: userId
+        })
+      })
+        .then(function (response) {
+          if (response.status === 200) {
+            if (button) {
+              button.textContent = 'Claimed';
+              button.classList.remove('primary', 'ghost');
+              button.classList.add('claimed');
+            }
+            alert('Claim successful.');
+            state.eligibility = null;
+            checkBonusEligibility(true);
+            return;
+          }
+
+          if (response.status === 400) {
+            alert('Station cannot process now. Please try again.');
+          } else if (response.status === 404) {
+            alert('Claim failed or not eligible.');
+          } else {
+            alert('Claim failed. Status: ' + response.status);
+          }
+
+          state.eligibility = null;
+          checkBonusEligibility(true);
+        })
+        .catch(function (error) {
+          console.error('[VIP] Claim error:', error);
+          alert('Claim request failed. Please try again.');
+          state.eligibility = null;
+          checkBonusEligibility(true);
+        });
+    }
+
+    function bindClaimButtons() {
+      var buttons = document.querySelectorAll('[data-bonus]');
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].__vipClaimBound) continue;
+        buttons[i].__vipClaimBound = true;
+        buttons[i].addEventListener('click', function () {
+          claimBonus(this.getAttribute('data-bonus'));
+        });
+      }
+    }
+
+    function loadTermsData() {
+      if (state.termsLoading || state.termsText) {
+        renderTerms();
+        return;
+      }
+
+      state.termsLoading = true;
+
+      fetch(TC_URL, { method: 'GET' })
+        .then(function (response) {
+          console.log('[VIP] T&C status:', response.status);
+          if (!response.ok) throw new Error('T&C failed: ' + response.status);
+          return response.json();
+        })
+        .then(function (data) {
+          state.termsLoading = false;
+          state.termsText = extractTermsText(data) || '';
+          renderTerms();
+        })
+        .catch(function (error) {
+          state.termsLoading = false;
+          console.error('[VIP] T&C error:', error);
+          state.termsText = '';
+          renderTerms();
+        });
+    }
+
+    function renderTerms() {
+      var termsBody = document.getElementById('termsBody');
+      if (!termsBody) return;
+
+      var text = state.termsText;
+      if (!text) {
+        termsBody.innerHTML = '<p>Terms and conditions are currently unavailable.</p>';
+        return;
+      }
+
+      var signature = text.slice(0, 250);
+      if (termsBody.getAttribute('data-vip-render-signature') === signature) return;
+      termsBody.setAttribute('data-vip-render-signature', signature);
+
+      var lines = text
+        .split(/\n+/)
+        .map(function (line) { return line.trim(); })
+        .filter(Boolean);
+
+      if (!lines.length) {
+        termsBody.innerHTML = '<p>' + safeText(text) + '</p>';
+        return;
+      }
+
+      termsBody.innerHTML = '<ol>' + lines.map(function (line) {
+        return '<li>' + safeText(line) + '</li>';
+      }).join('') + '</ol>';
+
+      console.log('[VIP] T&C rendered, lines:', lines.length);
+    }
+
+    function extractTermsText(data) {
+      if (!data) return '';
+      if (typeof data === 'string') return data;
+
+      if (data.description) return data.description;
+      if (data.details) return data.details;
+      if (data.content) return data.content;
+      if (data.terms) return data.terms;
+
+      if (data.data) {
+        if (typeof data.data === 'string') return data.data;
+        if (data.data.description) return data.data.description;
+        if (data.data.details) return data.data.details;
+        if (data.data.content) return data.data.content;
+        if (data.data.terms) return data.data.terms;
+      }
+
+      return '';
+    }
+
+    function renderAll() {
+      if (state.tiers) {
+        renderProgressPanel(state.tiers);
+        renderTierChain(state.tiers);
+        renderBenefitTable(state.tiers);
+      }
+
+      if (state.eligibility) {
+        renderEligibility(state.eligibility);
+      }
+
+      if (state.termsText !== null) {
+        renderTerms();
+      }
+    }
+
+    function boot(reason) {
+      state.bootCount += 1;
+
+      if (!document.body) {
+        setTimeout(function () { boot(reason || 'body-wait'); }, 100);
+        return;
+      }
+
+      ensureObserver();
+      bindClaimButtons();
+
+      console.log('[VIP] boot #' + state.bootCount + ', reason=' + (reason || 'normal') + ', readyState=' + document.readyState + ', vipDom=' + hasVipDom());
+      debugCurrentUser();
+
+      startApiLoads();
+      renderAll();
+
+      // CMS may replace the route HTML shortly after first script execution.
+      // These delayed renders use cached API data and do not call APIs again.
+      setTimeout(debounceRender, 300);
+      setTimeout(debounceRender, 1000);
+      setTimeout(debounceRender, 2000);
+    }
+
+    window.VIPRewardApp = {
+      boot: boot,
+      render: renderAll,
+      reloadEligibility: function () {
+        state.eligibility = null;
+        checkBonusEligibility(true);
+      },
+      getState: function () {
+        return state;
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { boot('DOMContentLoaded'); });
+    } else {
+      boot('script-load');
+    }
+  })();
+  </script>
+</body>
+</html>
