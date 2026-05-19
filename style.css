@@ -115,6 +115,10 @@ main.container {
     background: linear-gradient(135deg, #059669 0%, #0891b2 100%);
 }
 
+.thumb-vip-fab {
+    background: linear-gradient(135deg, #b45309 0%, #ffc107 100%);
+}
+
 .badge {
     position: relative;
     z-index: 1;
