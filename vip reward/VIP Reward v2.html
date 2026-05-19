@@ -96,6 +96,54 @@
     <div class="section-banner">━━&nbsp; VIP PROGRESS STATUS &nbsp;━━</div>
 
     <section class="progress-panel">
+      <!-- Stats strip: current level, deposit progress bar, monthly balances -->
+      <div class="progress-stats">
+        <div class="stat-chip stat-level">
+          <span class="chip-label">Current Level</span>
+          <div class="chip-body">
+            <img class="chip-emblem" src="assets/ranks/rank/Amethyst.png" alt="" />
+            <span class="chip-value">AMETHYST</span>
+          </div>
+        </div>
+
+        <div class="stat-chip stat-progress" data-state="max">
+          <div class="chip-head">
+            <span class="chip-label">Deposit Progress</span>
+            <span class="chip-badge">MAX TIER UNLOCKED</span>
+          </div>
+          <div class="progress-track" style="--p: 100%">
+            <div class="progress-fill" aria-hidden="true">
+              <span class="progress-shimmer"></span>
+            </div>
+            <span class="progress-marker progress-marker-start" aria-hidden="true">
+              <img src="assets/ranks/rank/Sapphire.png" alt="" />
+            </span>
+            <span class="progress-marker progress-marker-end" aria-hidden="true">
+              <img src="assets/ranks/rank/Amethyst.png" alt="" />
+              <span class="marker-crown">★</span>
+            </span>
+          </div>
+          <div class="progress-amounts">
+            <div class="amount-block">
+              <span class="amount-label">You have</span>
+              <span class="amount-now"><span class="amount-rm">RM</span>248,500.00</span>
+            </div>
+            <div class="amount-block amount-block-right">
+              <span class="amount-label">You need</span>
+              <span class="amount-goal"><span class="amount-rm">RM</span>0.00</span>
+              <span class="amount-hint"><span class="amount-check">✓</span> Max tier reached</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-chip stat-monthly">
+          <span class="chip-label">Monthly Balances</span>
+          <div class="chip-body">
+            <span class="chip-value"><span class="chip-rm">RM</span>12,488<span class="chip-cents">.00</span></span>
+          </div>
+        </div>
+      </div>
+
       <div class="rank-banner">
         <div class="rank-banner-text">
           <div class="rank-banner-name">AMETHYST</div>

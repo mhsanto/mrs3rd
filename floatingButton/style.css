@@ -1,583 +1,651 @@
 :root {
-    --cyan: #4ab8ff;
-    --cyan-soft: rgba(74, 184, 255, 0.55);
-    --cyan-glow: rgba(74, 184, 255, 0.85);
-    --pill-fill: linear-gradient(180deg, #0d2872 0%, #051538 100%);
-    --pill-fill-hover: linear-gradient(180deg, #143380 0%, #07194a 100%);
-    --text: #ffffff;
-    --shadow-soft: 0 14px 32px rgba(0, 0, 0, 0.5);
+  --cyan: #4ab8ff;
+  --cyan-soft: rgba(74, 184, 255, 0.55);
+  --cyan-glow: rgba(74, 184, 255, 0.85);
+  --pill-fill: linear-gradient(180deg, #0d2872 0%, #051538 100%);
+  --pill-fill-hover: linear-gradient(180deg, #143380 0%, #07194a 100%);
+  --text: #ffffff;
+  --shadow-soft: 0 14px 32px rgba(0, 0, 0, 0.5);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background:
-        radial-gradient(circle at 20% 25%, #1e3a8a 0%, transparent 55%),
-        radial-gradient(circle at 80% 75%, #312e81 0%, transparent 55%),
-        linear-gradient(135deg, #060f25 0%, #0a1733 100%);
-    color: #e2e8f0;
-    overflow-x: hidden;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background:
+    radial-gradient(circle at 20% 25%, #1e3a8a 0%, transparent 55%),
+    radial-gradient(circle at 80% 75%, #312e81 0%, transparent 55%),
+    linear-gradient(135deg, #060f25 0%, #0a1733 100%);
+  color: #e2e8f0;
+  overflow-x: hidden;
 }
 
 .stage {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stage-hint {
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(226, 232, 240, 0.4);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.4);
 }
 
 /* ============== Variant switcher ============== */
 .variant-switch {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    display: flex;
-    gap: 6px;
-    padding: 6px;
-    background: rgba(8, 14, 30, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 999px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(8, 14, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
 }
 
 .variant-switch button {
-    padding: 8px 16px;
-    border: none;
-    background: transparent;
-    color: rgba(226, 232, 240, 0.75);
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 200ms ease, color 200ms ease;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: rgba(226, 232, 240, 0.75);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    color 200ms ease;
 }
 
 .variant-switch button:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .variant-switch button.is-active {
-    background: linear-gradient(180deg, #1e3a8a, #0b1d4d);
-    color: #fff;
-    box-shadow: inset 0 0 12px rgba(74, 184, 255, 0.4);
+  background: linear-gradient(180deg, #1e3a8a, #0b1d4d);
+  color: #fff;
+  box-shadow: inset 0 0 12px rgba(74, 184, 255, 0.4);
 }
 
 /* ============== Floating button container ============== */
 .fab {
-    position: fixed;
-    left: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 999;
-    display: flex;
-    align-items: center;
+  position: fixed;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  align-items: center;
 }
 
 /* ============== Trigger (mascot image button) ============== */
 .fab-trigger {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    cursor: pointer;
-    transition: transform 220ms ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 220ms ease;
 }
 
 .fab-trigger-image {
-    display: block;
-    width: 140px;
-    height: auto;
-    pointer-events: none;
-    user-select: none;
-    -webkit-user-drag: none;
-    animation: fab-bob 8s ease-in-out infinite;
-    will-change: transform;
-}
-
-/* Continuous vertical drift — .fab is centered at top:50%, so translateY(0)
-   sits at viewport center. Drift only DOWNWARD toward the bottom and back. */
-@keyframes fab-bob {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(40vh); }
-}
-
-/* Pause the bob while the menu is open so it doesn't fight the panel transition */
-.fab[data-open="true"] .fab-trigger-image {
-    animation-play-state: paused;
+  display: block;
+  width: 140px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Show only the mascot that matches the active variant */
-.fab[data-variant="arc"]   .fab-trigger-image--stack { display: none; }
-.fab[data-variant="stack"] .fab-trigger-image--arc   { display: none; }
+.fab[data-variant="arc"] .fab-trigger-image--stack {
+  display: none;
+}
+.fab[data-variant="stack"] .fab-trigger-image--arc {
+  display: none;
+}
 
-.fab-trigger:hover { transform: translateY(-2px) scale(1.04); }
-.fab-trigger:active { transform: scale(0.97); }
-
+.fab-trigger:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+.fab-trigger:active {
+  transform: scale(0.97);
+}
 
 /* ============== Expanded panel ============== */
 .fab-panel {
-    position: absolute;
-    left: 100%;             /* Open to the RIGHT of the trigger */
-    top: 50%;
-    margin-left: 56px;      /* Compact gap; X floats outside the panel */
-    width: min(320px, calc(100vw - 220px));
-    padding: 12px 0 12px 8px; /* the X floats outside the panel on the left */
+  position: absolute;
+  left: 100%; /* Open to the RIGHT of the trigger */
+  top: 50%;
+  margin-left: 56px; /* Compact gap; X floats outside the panel */
+  width: min(320px, calc(100vw - 220px));
+  padding: 12px 0 12px 8px; /* the X floats outside the panel on the left */
 
-    /* No background — pills float on the page */
+  /* No background — pills float on the page */
 
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-50%) translateX(-16px) scale(0.96);
-    transform-origin: left center;
-    pointer-events: none;
-    transition:
-        opacity 240ms ease,
-        transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
-        visibility 0s linear 240ms;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(-16px) scale(0.96);
+  transform-origin: left center;
+  pointer-events: none;
+  transition:
+    opacity 240ms ease,
+    transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    visibility 0s linear 240ms;
 }
 
 .fab[data-open="true"] .fab-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) translateX(0) scale(1);
-    pointer-events: auto;
-    transition:
-        opacity 240ms ease,
-        transform 340ms cubic-bezier(0.34, 1.56, 0.64, 1),
-        visibility 0s linear 0s;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0) scale(1);
+  pointer-events: auto;
+  transition:
+    opacity 240ms ease,
+    transform 340ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    visibility 0s linear 0s;
 }
 
 /* ============== Close button (floats outside the menu on the left) ============== */
 .fab-close {
-    position: absolute;
-    top: 92px;
-    left: -50px;
-    right: auto;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 2px solid var(--cyan);
-    background: rgba(8, 22, 60, 0.55);
-    color: var(--text);
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow:
-        0 0 18px var(--cyan-soft),
-        inset 0 0 10px rgba(74, 184, 255, 0.2);
-    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  position: absolute;
+  top: 92px;
+  left: -50px;
+  right: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  background: rgba(8, 22, 60, 0.55);
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow:
+    0 0 18px var(--cyan-soft),
+    inset 0 0 10px rgba(74, 184, 255, 0.2);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
 }
 
 .fab-close:hover {
-    transform: rotate(90deg) scale(1.08);
-    background: rgba(20, 51, 128, 0.7);
-    box-shadow:
-        0 0 26px var(--cyan-glow),
-        inset 0 0 14px rgba(74, 184, 255, 0.3);
+  transform: rotate(90deg) scale(1.08);
+  background: rgba(20, 51, 128, 0.7);
+  box-shadow:
+    0 0 26px var(--cyan-glow),
+    inset 0 0 14px rgba(74, 184, 255, 0.3);
 }
 
 /* ============== Menu list ============== */
 .fab-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .fab-item {
-    /* --tx is the per-item horizontal offset that creates the C-arc.
+  /* --tx is the per-item horizontal offset that creates the C-arc.
        Top and bottom items curve toward the trigger; middle items stay straight. */
-    --tx: 0px;
+  --tx: 0px;
 
-    position: relative;
-    display: flex;
-    align-items: center;
-    min-height: 60px;
-    padding: 6px 42px 6px 76px; /* right: chevron room. left: icon room + breathing space */
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  padding: 6px 42px 6px 76px; /* right: chevron room. left: icon room + breathing space */
 
-    border: 2px solid var(--cyan);
-    border-radius: 999px;
-    background: var(--pill-fill);
-    color: var(--text);
-    cursor: pointer;
+  border: 2px solid var(--cyan);
+  border-radius: 999px;
+  background: var(--pill-fill);
+  color: var(--text);
+  cursor: pointer;
 
-    box-shadow:
-        0 0 18px var(--cyan-soft),
-        inset 0 0 22px rgba(74, 184, 255, 0.12),
-        0 6px 18px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 0 18px var(--cyan-soft),
+    inset 0 0 22px rgba(74, 184, 255, 0.12),
+    0 6px 18px rgba(0, 0, 0, 0.45);
 
-    transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 220ms ease, background 220ms ease;
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 220ms ease,
+    background 220ms ease;
 
-    /* Starting state for the open animation: nudged further right + invisible */
-    opacity: 0;
-    transform: translateX(calc(var(--tx) + 30px));
+  /* Starting state for the open animation: nudged further right + invisible */
+  opacity: 0;
+  transform: translateX(calc(var(--tx) + 30px));
 }
 
 /* C-arc offsets: items 1 & 5 curve LEFT toward the trigger, items 2-4 stay straight
    so they don't collide with the X close button on the left. */
-.fab-item:nth-child(1) { --tx: -28px; }
-.fab-item:nth-child(2) { --tx: 0px;   }
-.fab-item:nth-child(3) { --tx: 0px;   }
-.fab-item:nth-child(4) { --tx: 0px;   }
-.fab-item:nth-child(5) { --tx: -28px; }
-
-.fab[data-open="true"] .fab-item {
-    animation: slide-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+.fab-item:nth-child(1) {
+  --tx: -28px;
+}
+.fab-item:nth-child(2) {
+  --tx: 0px;
+}
+.fab-item:nth-child(3) {
+  --tx: 0px;
+}
+.fab-item:nth-child(4) {
+  --tx: 0px;
+}
+.fab-item:nth-child(5) {
+  --tx: -28px;
 }
 
-.fab[data-open="true"] .fab-item:nth-child(1) { animation-delay: 60ms; }
-.fab[data-open="true"] .fab-item:nth-child(2) { animation-delay: 120ms; }
-.fab[data-open="true"] .fab-item:nth-child(3) { animation-delay: 180ms; }
-.fab[data-open="true"] .fab-item:nth-child(4) { animation-delay: 240ms; }
-.fab[data-open="true"] .fab-item:nth-child(5) { animation-delay: 300ms; }
+.fab[data-open="true"] .fab-item {
+  animation: slide-in 420ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.fab[data-open="true"] .fab-item:nth-child(1) {
+  animation-delay: 60ms;
+}
+.fab[data-open="true"] .fab-item:nth-child(2) {
+  animation-delay: 120ms;
+}
+.fab[data-open="true"] .fab-item:nth-child(3) {
+  animation-delay: 180ms;
+}
+.fab[data-open="true"] .fab-item:nth-child(4) {
+  animation-delay: 240ms;
+}
+.fab[data-open="true"] .fab-item:nth-child(5) {
+  animation-delay: 300ms;
+}
 
 @keyframes slide-in {
-    to {
-        opacity: 1;
-        transform: translateX(var(--tx));
-    }
+  to {
+    opacity: 1;
+    transform: translateX(var(--tx));
+  }
 }
 
 .fab-item:hover {
-    background: var(--pill-fill-hover);
-    box-shadow:
-        0 0 28px var(--cyan-glow),
-        inset 0 0 28px rgba(74, 184, 255, 0.22),
-        0 8px 22px rgba(0, 0, 0, 0.5);
-    transform: translateX(calc(var(--tx) - 6px));
+  background: var(--pill-fill-hover);
+  box-shadow:
+    0 0 28px var(--cyan-glow),
+    inset 0 0 28px rgba(74, 184, 255, 0.22),
+    0 8px 22px rgba(0, 0, 0, 0.5);
+  transform: translateX(calc(var(--tx) - 6px));
 }
 
 .fab-item:active {
-    transform: translateX(calc(var(--tx) - 3px)) scale(0.98);
+  transform: translateX(calc(var(--tx) - 3px)) scale(0.98);
 }
 
 .fab-item:focus-visible {
-    outline: none;
-    border-color: #fde047;
-    box-shadow:
-        0 0 26px rgba(253, 224, 71, 0.55),
-        inset 0 0 22px rgba(74, 184, 255, 0.18);
+  outline: none;
+  border-color: #fde047;
+  box-shadow:
+    0 0 26px rgba(253, 224, 71, 0.55),
+    inset 0 0 22px rgba(74, 184, 255, 0.18);
 }
 
 /* Icon — circular badge that overflows the left side of the pill */
 .fab-icon {
-    position: absolute;
-    left: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    line-height: 1;
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  line-height: 1;
 
-    /* Circular badge with themed border + inner glow */
-    border-radius: 50%;
-    border: 2px solid var(--cyan);
-    background: radial-gradient(circle at 50% 35%, #1e3a8a 0%, #07153e 100%);
-    box-shadow:
-        0 0 16px var(--cyan-soft),
-        inset 0 0 14px rgba(74, 184, 255, 0.2),
-        0 4px 8px rgba(0, 0, 0, 0.45);
+  /* Circular badge with themed border + inner glow */
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  background: radial-gradient(circle at 50% 35%, #1e3a8a 0%, #07153e 100%);
+  box-shadow:
+    0 0 16px var(--cyan-soft),
+    inset 0 0 14px rgba(74, 184, 255, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.45);
 
-    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
 .fab-item:hover .fab-icon {
-    transform: translateY(-50%) scale(1.08) rotate(-4deg);
-    box-shadow:
-        0 0 22px var(--cyan-glow),
-        inset 0 0 16px rgba(74, 184, 255, 0.28),
-        0 6px 12px rgba(0, 0, 0, 0.5);
+  transform: translateY(-50%) scale(1.08) rotate(-4deg);
+  box-shadow:
+    0 0 22px var(--cyan-glow),
+    inset 0 0 16px rgba(74, 184, 255, 0.28),
+    0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .fab-label {
-    flex: 1;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 0.01em;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Chevron — glowing cyan circle on the right */
 .fab-chev {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1.5px solid var(--cyan);
-    background: rgba(8, 22, 60, 0.5);
-    color: var(--cyan);
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow:
-        0 0 10px var(--cyan-soft),
-        inset 0 0 6px rgba(74, 184, 255, 0.25);
-    transition: transform 220ms ease, background 220ms ease, color 220ms ease;
-    padding-left: 2px; /* visually center the › glyph */
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cyan);
+  background: rgba(8, 22, 60, 0.5);
+  color: var(--cyan);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 10px var(--cyan-soft),
+    inset 0 0 6px rgba(74, 184, 255, 0.25);
+  transition:
+    transform 220ms ease,
+    background 220ms ease,
+    color 220ms ease;
+  padding-left: 2px; /* visually center the › glyph */
 }
 
 .fab-item:hover .fab-chev {
-    transform: translateY(-50%) translateX(3px);
-    background: var(--cyan);
-    color: #051538;
+  transform: translateY(-50%) translateX(3px);
+  background: var(--cyan);
+  color: #051538;
 }
 
 /* ============== Tablet (≤ 768px) ============== */
 @media (max-width: 768px) {
-    .fab { left: 16px; }
-    .fab-trigger-image { width: 120px; }
-    .fab-panel {
-        width: min(280px, calc(100vw - 210px));
-        margin-left: 52px;
-        padding: 10px 0 10px 6px;
-    }
-    .fab-close {
-        top: 84px;
-        left: -42px;
-        width: 38px;
-        height: 38px;
-        font-size: 20px;
-    }
-    .fab-icon {
-        width: 54px;
-        height: 54px;
-        font-size: 28px;
-    }
-    .fab-label { font-size: 14px; }
-    .fab-item {
-        min-height: 54px;
-        padding: 5px 38px 5px 68px;
-    }
-    .fab-chev {
-        right: 10px;
-        width: 26px;
-        height: 26px;
-        font-size: 20px;
-    }
-    .fab-item:nth-child(1), .fab-item:nth-child(5) { --tx: -22px; }
+  .fab {
+    left: 16px;
+  }
+  .fab-trigger-image {
+    width: 120px;
+  }
+  .fab-panel {
+    width: min(280px, calc(100vw - 210px));
+    margin-left: 52px;
+    padding: 10px 0 10px 6px;
+  }
+  .fab-close {
+    top: 84px;
+    left: -42px;
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+  .fab-icon {
+    width: 54px;
+    height: 54px;
+    font-size: 28px;
+  }
+  .fab-label {
+    font-size: 14px;
+  }
+  .fab-item {
+    min-height: 54px;
+    padding: 5px 38px 5px 68px;
+  }
+  .fab-chev {
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    font-size: 20px;
+  }
+  .fab-item:nth-child(1),
+  .fab-item:nth-child(5) {
+    --tx: -22px;
+  }
 }
 
 /* ============== Mobile (≤ 480px) ============== */
 @media (max-width: 480px) {
-    .fab { left: 10px; }
-    .fab-trigger-image { width: 90px; }
-    .fab-panel {
-        width: calc(100vw - 170px);
-        margin-left: 44px;
-        padding: 8px 0 8px 4px;
-    }
-    .fab-close {
-        top: 72px;
-        left: -36px;
-        width: 32px;
-        height: 32px;
-        font-size: 17px;
-    }
-    .fab-icon {
-        width: 46px;
-        height: 46px;
-        font-size: 24px;
-        left: -2px;
-    }
-    .fab-label {
-        font-size: 13px;
-        font-weight: 700;
-    }
-    .fab-item {
-        min-height: 48px;
-        padding: 4px 32px 4px 58px;
-    }
-    .fab-chev {
-        right: 8px;
-        width: 22px;
-        height: 22px;
-        font-size: 18px;
-    }
-    .fab-item:nth-child(1), .fab-item:nth-child(5) { --tx: -16px; }
-    /* Variant switcher pinned to top — shrink on small screens */
-    .variant-switch { top: 12px; left: 12px; padding: 4px; }
-    .variant-switch button { padding: 6px 10px; font-size: 11px; }
+  .fab {
+    left: 10px;
+  }
+  .fab-trigger-image {
+    width: 90px;
+  }
+  .fab-panel {
+    width: calc(100vw - 170px);
+    margin-left: 44px;
+    padding: 8px 0 8px 4px;
+  }
+  .fab-close {
+    top: 72px;
+    left: -36px;
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+  .fab-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 24px;
+    left: -2px;
+  }
+  .fab-label {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .fab-item {
+    min-height: 48px;
+    padding: 4px 32px 4px 58px;
+  }
+  .fab-chev {
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    font-size: 18px;
+  }
+  .fab-item:nth-child(1),
+  .fab-item:nth-child(5) {
+    --tx: -16px;
+  }
+  /* Variant switcher pinned to top — shrink on small screens */
+  .variant-switch {
+    top: 12px;
+    left: 12px;
+    padding: 4px;
+  }
+  .variant-switch button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
 }
 
 /* ============== Tiny phones / iPhone SE (≤ 380px) ============== */
 @media (max-width: 380px) {
-    .fab { left: 6px; }
-    .fab-trigger-image { width: 72px; }
-    .fab-panel {
-        width: calc(100vw - 140px);
-        margin-left: 36px;
-        padding: 6px 0 6px 2px;
-    }
-    .fab-close {
-        top: 60px;
-        left: -30px;
-        width: 28px;
-        height: 28px;
-        font-size: 15px;
-    }
-    .fab-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 22px;
-    }
-    .fab-label { font-size: 12px; }
-    .fab-item {
-        min-height: 44px;
-        padding: 3px 28px 3px 50px;
-    }
-    .fab-chev {
-        right: 6px;
-        width: 20px;
-        height: 20px;
-        font-size: 16px;
-    }
-    .fab-item:nth-child(1), .fab-item:nth-child(5) { --tx: -10px; }
+  .fab {
+    left: 6px;
+  }
+  .fab-trigger-image {
+    width: 72px;
+  }
+  .fab-panel {
+    width: calc(100vw - 140px);
+    margin-left: 36px;
+    padding: 6px 0 6px 2px;
+  }
+  .fab-close {
+    top: 60px;
+    left: -30px;
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+  }
+  .fab-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  .fab-label {
+    font-size: 12px;
+  }
+  .fab-item {
+    min-height: 44px;
+    padding: 3px 28px 3px 50px;
+  }
+  .fab-chev {
+    right: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+  .fab-item:nth-child(1),
+  .fab-item:nth-child(5) {
+    --tx: -10px;
+  }
 }
 
 /* ====================================================================
    STACK · RED variant — black pills with red glow, straight vertical
    ==================================================================== */
 .fab[data-variant="stack"] {
-    --cyan: #ef4444;
-    --cyan-soft: rgba(239, 68, 68, 0.5);
-    --cyan-glow: rgba(239, 68, 68, 0.85);
-    --pill-fill: linear-gradient(180deg, #0e0303 0%, #050000 100%);
-    --pill-fill-hover: linear-gradient(180deg, #1a0606 0%, #0a0202 100%);
+  --cyan: #ef4444;
+  --cyan-soft: rgba(239, 68, 68, 0.5);
+  --cyan-glow: rgba(239, 68, 68, 0.85);
+  --pill-fill: linear-gradient(180deg, #0e0303 0%, #050000 100%);
+  --pill-fill-hover: linear-gradient(180deg, #1a0606 0%, #0a0202 100%);
 }
 
 /* Panel: leave room on the left for the floating X close button */
 .fab[data-variant="stack"] .fab-panel {
-    width: min(320px, calc(100vw - 220px));
-    margin-left: 56px;
-    padding: 12px 0 12px 8px;
+  width: min(320px, calc(100vw - 220px));
+  margin-left: 56px;
+  padding: 12px 0 12px 8px;
 }
 
 /* Straighten the arc — all items at --tx 0 */
-.fab[data-variant="stack"] .fab-item:nth-child(n) { --tx: 0px; }
+.fab[data-variant="stack"] .fab-item:nth-child(n) {
+  --tx: 0px;
+}
 
 /* Black pills with red border */
 .fab[data-variant="stack"] .fab-item {
-    min-height: 66px;
-    padding: 6px 46px 6px 84px;
-    border-width: 2px;
-    box-shadow:
-        0 0 20px rgba(239, 68, 68, 0.55),
-        inset 0 0 24px rgba(239, 68, 68, 0.12),
-        0 6px 18px rgba(0, 0, 0, 0.55);
+  min-height: 66px;
+  padding: 6px 46px 6px 84px;
+  border-width: 2px;
+  box-shadow:
+    0 0 20px rgba(239, 68, 68, 0.55),
+    inset 0 0 24px rgba(239, 68, 68, 0.12),
+    0 6px 18px rgba(0, 0, 0, 0.55);
 }
 
 .fab[data-variant="stack"] .fab-item:hover {
-    box-shadow:
-        0 0 32px rgba(239, 68, 68, 0.85),
-        inset 0 0 30px rgba(239, 68, 68, 0.2),
-        0 8px 22px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 0 32px rgba(239, 68, 68, 0.85),
+    inset 0 0 30px rgba(239, 68, 68, 0.2),
+    0 8px 22px rgba(0, 0, 0, 0.6);
 }
 
 /* Circular icon badge with red border + inner glow */
 .fab[data-variant="stack"] .fab-icon {
-    left: -4px;
-    width: 64px;
-    height: 64px;
-    font-size: 34px;
-    border: 2.5px solid #ef4444;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 40%, #1c0303 0%, #050000 100%);
-    box-shadow:
-        0 0 18px rgba(239, 68, 68, 0.7),
-        inset 0 0 12px rgba(239, 68, 68, 0.25);
+  left: -4px;
+  width: 64px;
+  height: 64px;
+  font-size: 34px;
+  border: 2.5px solid #ef4444;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #1c0303 0%, #050000 100%);
+  box-shadow:
+    0 0 18px rgba(239, 68, 68, 0.7),
+    inset 0 0 12px rgba(239, 68, 68, 0.25);
 }
 
 /* Bigger, bolder labels */
 .fab[data-variant="stack"] .fab-label {
-    font-size: 16px;
-    font-weight: 800;
+  font-size: 16px;
+  font-weight: 800;
 }
 
 /* Chevron: bare red arrow, no circle */
 .fab[data-variant="stack"] .fab-chev {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    color: #ef4444;
-    font-size: 30px;
-    width: 24px;
-    height: 24px;
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #ef4444;
+  font-size: 30px;
+  width: 24px;
+  height: 24px;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
 }
 
 .fab[data-variant="stack"] .fab-item:hover .fab-chev {
-    background: transparent;
-    color: #fca5a5;
-    transform: translateY(-50%) translateX(6px);
+  background: transparent;
+  color: #fca5a5;
+  transform: translateY(-50%) translateX(6px);
 }
 
 /* X close button: small red-glowing circle floating to the left of the menu */
 .fab[data-variant="stack"] .fab-close {
-    top: 90px;
-    left: -50px;
-    right: auto;
-    width: 42px;
-    height: 42px;
-    font-size: 22px;
-    color: #fff;
-    background: rgba(20, 4, 4, 0.6);
-    border: 2px solid #ef4444;
-    z-index: 10;
-    box-shadow:
-        0 0 18px rgba(239, 68, 68, 0.7),
-        inset 0 0 10px rgba(239, 68, 68, 0.2);
+  top: 90px;
+  left: -50px;
+  right: auto;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  color: #fff;
+  background: rgba(20, 4, 4, 0.6);
+  border: 2px solid #ef4444;
+  z-index: 10;
+  box-shadow:
+    0 0 18px rgba(239, 68, 68, 0.7),
+    inset 0 0 10px rgba(239, 68, 68, 0.2);
 }
 
 .fab[data-variant="stack"] .fab-close:hover {
-    background: rgba(40, 8, 8, 0.7);
-    box-shadow:
-        0 0 26px rgba(239, 68, 68, 0.95),
-        inset 0 0 14px rgba(239, 68, 68, 0.3);
+  background: rgba(40, 8, 8, 0.7);
+  box-shadow:
+    0 0 26px rgba(239, 68, 68, 0.95),
+    inset 0 0 14px rgba(239, 68, 68, 0.3);
 }
 
 /* Active-state switcher button uses red when stack is selected */
 body:has(.fab[data-variant="stack"]) .variant-switch button.is-active {
-    background: linear-gradient(180deg, #7f1d1d, #2a0606);
-    box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.5);
+  background: linear-gradient(180deg, #7f1d1d, #2a0606);
+  box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.5);
 }
 
 /* ====================================================================
@@ -586,104 +654,106 @@ body:has(.fab[data-variant="stack"]) .variant-switch button.is-active {
 
 /* Tablet (≤ 768px) */
 @media (max-width: 768px) {
-    .fab[data-variant="stack"] .fab-panel {
-        width: min(280px, calc(100vw - 210px));
-        margin-left: 52px;
-        padding: 10px 0 10px 4px;
-    }
-    .fab[data-variant="stack"] .fab-close {
-        top: 84px;
-        left: -42px;
-        width: 38px;
-        height: 38px;
-        font-size: 20px;
-    }
-    .fab[data-variant="stack"] .fab-icon {
-        width: 56px;
-        height: 56px;
-        font-size: 30px;
-    }
-    .fab[data-variant="stack"] .fab-label {
-        font-size: 14px;
-    }
-    .fab[data-variant="stack"] .fab-item {
-        min-height: 58px;
-        padding: 5px 38px 5px 72px;
-    }
+  .fab[data-variant="stack"] .fab-panel {
+    width: min(280px, calc(100vw - 210px));
+    margin-left: 52px;
+    padding: 10px 0 10px 4px;
+  }
+  .fab[data-variant="stack"] .fab-close {
+    top: 84px;
+    left: -42px;
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+  .fab[data-variant="stack"] .fab-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 30px;
+  }
+  .fab[data-variant="stack"] .fab-label {
+    font-size: 14px;
+  }
+  .fab[data-variant="stack"] .fab-item {
+    min-height: 58px;
+    padding: 5px 38px 5px 72px;
+  }
 }
 
 /* Mobile (≤ 480px) */
 @media (max-width: 480px) {
-    .fab[data-variant="stack"] .fab-panel {
-        width: calc(100vw - 170px);
-        margin-left: 44px;
-        padding: 8px 0 8px 4px;
-    }
-    .fab[data-variant="stack"] .fab-close {
-        top: 72px;
-        left: -36px;
-        width: 32px;
-        height: 32px;
-        font-size: 17px;
-    }
-    .fab[data-variant="stack"] .fab-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 26px;
-        left: -2px;
-    }
-    .fab[data-variant="stack"] .fab-label {
-        font-size: 13px;
-    }
-    .fab[data-variant="stack"] .fab-item {
-        min-height: 52px;
-        padding: 4px 32px 4px 62px;
-    }
+  .fab[data-variant="stack"] .fab-panel {
+    width: calc(100vw - 170px);
+    margin-left: 44px;
+    padding: 8px 0 8px 4px;
+  }
+  .fab[data-variant="stack"] .fab-close {
+    top: 72px;
+    left: -36px;
+    width: 32px;
+    height: 32px;
+    font-size: 17px;
+  }
+  .fab[data-variant="stack"] .fab-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 26px;
+    left: -2px;
+  }
+  .fab[data-variant="stack"] .fab-label {
+    font-size: 13px;
+  }
+  .fab[data-variant="stack"] .fab-item {
+    min-height: 52px;
+    padding: 4px 32px 4px 62px;
+  }
 }
 
 /* Tiny phones / iPhone SE (≤ 380px) */
 @media (max-width: 380px) {
-    .fab[data-variant="stack"] .fab-panel {
-        width: calc(100vw - 140px);
-        margin-left: 36px;
-        padding: 6px 0 6px 2px;
-    }
-    .fab[data-variant="stack"] .fab-close {
-        top: 60px;
-        left: -30px;
-        width: 28px;
-        height: 28px;
-        font-size: 15px;
-    }
-    .fab[data-variant="stack"] .fab-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 22px;
-    }
-    .fab[data-variant="stack"] .fab-label {
-        font-size: 12px;
-    }
-    .fab[data-variant="stack"] .fab-item {
-        min-height: 46px;
-        padding: 3px 28px 3px 54px;
-    }
+  .fab[data-variant="stack"] .fab-panel {
+    width: calc(100vw - 140px);
+    margin-left: 36px;
+    padding: 6px 0 6px 2px;
+  }
+  .fab[data-variant="stack"] .fab-close {
+    top: 60px;
+    left: -30px;
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+  }
+  .fab[data-variant="stack"] .fab-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+  }
+  .fab[data-variant="stack"] .fab-label {
+    font-size: 12px;
+  }
+  .fab[data-variant="stack"] .fab-item {
+    min-height: 46px;
+    padding: 3px 28px 3px 54px;
+  }
 }
 
 /* ============== Reduced motion ============== */
 @media (prefers-reduced-motion: reduce) {
-    .fab-trigger-glow,
-    .fab-trigger-image,
-    .fab-item,
-    .fab-panel,
-    .fab-trigger,
-    .fab-close,
-    .fab-chev,
-    .fab-icon {
-        animation: none !important;
-        transition: opacity 120ms ease, visibility 0s !important;
-    }
-    .fab[data-open="true"] .fab-item {
-        opacity: 1;
-        transform: translateX(var(--tx));
-    }
+  .fab-trigger-glow,
+  .fab-trigger-image,
+  .fab-item,
+  .fab-panel,
+  .fab-trigger,
+  .fab-close,
+  .fab-chev,
+  .fab-icon {
+    animation: none !important;
+    transition:
+      opacity 120ms ease,
+      visibility 0s !important;
+  }
+  .fab[data-open="true"] .fab-item {
+    opacity: 1;
+    transform: translateX(var(--tx));
+  }
 }

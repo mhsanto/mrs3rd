@@ -408,8 +408,371 @@ body {
   padding: 18px;
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
+  grid-template-areas:
+    "stats stats"
+    "rank  bonuses";
   gap: 18px;
   align-items: stretch;
+}
+.progress-stats { grid-area: stats; }
+.rank-banner    { grid-area: rank; }
+.bonuses        { grid-area: bonuses; }
+
+/* ===================== PROGRESS STATS STRIP ===================== */
+.progress-stats {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 220px;
+  gap: 14px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.stat-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 193, 7, 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, #181818 0%, #0c0c0c 100%);
+  border: 1px solid rgba(255, 193, 7, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 24px -18px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  min-width: 0;
+}
+.stat-chip:hover {
+  border-color: rgba(255, 193, 7, 0.55);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 14px 28px -16px rgba(255, 193, 7, 0.35);
+}
+/* hairline gold accent line on top-left corner */
+.stat-chip::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 14px;
+  width: 28px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.chip-label {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b8b8b8;
+  text-align: center;
+}
+.chip-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.chip-emblem {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 10px rgba(255, 213, 82, 0.25));
+  animation: chipEmblemHover 4.2s ease-in-out infinite;
+}
+.chip-value {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  background: linear-gradient(180deg, #fff6b8 0%, #ffd552 55%, #b87b00 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+.chip-rm {
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 4px;
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+}
+.chip-cents {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+/* --- The wide progress chip in the middle --- */
+.stat-progress {
+  padding: 14px 20px 16px;
+  gap: 10px;
+}
+.stat-progress .chip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.chip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1a1100;
+  background: linear-gradient(180deg, #ffe07a 0%, #f1b300 100%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 213, 82, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 4px 10px -4px rgba(255, 193, 7, 0.55);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.chip-badge::before {
+  content: "✦";
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* The progress track itself */
+.progress-track {
+  position: relative;
+  height: 14px;
+  margin: 22px 22px 6px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #050505 0%, #1a1308 100%);
+  border: 1px solid rgba(255, 193, 7, 0.18);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+  overflow: visible;
+}
+.progress-fill {
+  position: relative;
+  height: 100%;
+  width: var(--p, 0%);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #fff6b8 0%, #ffd552 35%, #ffc107 65%, #b87b00 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 0 14px rgba(255, 193, 7, 0.55),
+    0 0 28px rgba(255, 193, 7, 0.25);
+  overflow: hidden;
+  transition: width 1.2s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+.progress-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: progressShimmer 2.8s linear infinite;
+}
+
+/* Tier emblem markers anchored at start & end of track */
+.progress-marker {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 35%, #1f1408 0%, #060503 70%);
+  border: 1.5px solid var(--gold);
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(255, 193, 7, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%);
+}
+.progress-marker img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+.progress-marker-start { left: -10px; }
+.progress-marker-end   { right: -10px; }
+.progress-marker-end {
+  border-color: #ffd552;
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.6),
+    0 0 22px rgba(255, 213, 82, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  animation: markerPulse 2.6s ease-in-out infinite;
+}
+.marker-crown {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(255, 213, 82, 0.9);
+}
+
+.progress-amounts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 0 6px;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.04em;
+}
+.amount-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.amount-block-right {
+  text-align: right;
+  align-items: flex-end;
+}
+.amount-label {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  line-height: 1;
+}
+.amount-now {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--gold);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  line-height: 1.1;
+}
+.amount-now .amount-rm,
+.amount-goal .amount-rm {
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 3px;
+  opacity: 0.85;
+}
+.amount-goal {
+  font-weight: 700;
+  font-size: 18px;
+  color: #e9e9e9;
+  line-height: 1.1;
+}
+.amount-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #8a8a8a;
+  text-transform: none;
+}
+.amount-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #4cd964 0%, #2faa44 100%);
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 2px 6px -2px rgba(76, 217, 100, 0.6);
+}
+
+/* --- Per-chip flavors --- */
+.stat-level,
+.stat-monthly {
+  justify-content: center;     /* fill stretched height nicely */
+  text-align: center;
+}
+.stat-level .chip-emblem {
+  width: 52px;
+  height: 52px;
+  filter:
+    drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 16px rgba(160, 80, 220, 0.55));
+}
+.stat-level .chip-value {
+  font-size: 24px;
+  letter-spacing: 0.1em;
+}
+.stat-monthly .chip-body {
+  justify-content: center;
+}
+.stat-monthly .chip-value {
+  font-size: 30px;
+  letter-spacing: 0.04em;
+}
+.stat-monthly .chip-rm {
+  font-size: 14px;
+  vertical-align: 2px;
+}
+.stat-monthly .chip-cents {
+  font-size: 16px;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+
+/* ----- Animations ----- */
+@keyframes progressShimmer {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(220%); }
+  100% { transform: translateX(220%); }
+}
+@keyframes markerPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(0, 0, 0, 0.6),
+      0 0 16px rgba(255, 213, 82, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(0, 0, 0, 0.6),
+      0 0 28px rgba(255, 213, 82, 0.95),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+@keyframes chipEmblemHover {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-2px) rotate(-2deg); }
 }
 
 /* --- Rank Banner (left vertical card on desktop) --- */
@@ -1112,6 +1475,14 @@ table.benefit tbody td.lvl {
     grid-template-columns: 260px minmax(0, 1fr);
     gap: 14px;
   }
+  .progress-stats {
+    grid-template-columns: 190px minmax(0, 1fr) 200px;
+    gap: 12px;
+  }
+  .chip-value { font-size: 20px; }
+  .progress-track { margin: 20px 20px 6px; }
+  .progress-marker { width: 38px; height: 38px; }
+  .progress-marker img { width: 24px; height: 24px; }
   .rank-banner {
     padding: 24px 22px;
   }
@@ -1232,10 +1603,33 @@ table.benefit tbody td.lvl {
 
   .progress-panel {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "stats"
+      "rank"
+      "bonuses";
     padding: 14px;
     gap: 14px;
     align-items: stretch;
   }
+  .progress-stats {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "level   monthly"
+      "progress progress";
+    gap: 10px;
+  }
+  .stat-level    { grid-area: level; }
+  .stat-monthly  { grid-area: monthly; }
+  .stat-progress { grid-area: progress; }
+  .stat-chip { padding: 12px 14px; }
+  .chip-value { font-size: 19px; }
+  .chip-emblem { width: 32px; height: 32px; }
+  .progress-track { margin: 20px 22px 8px; height: 12px; }
+  .progress-marker { width: 38px; height: 38px; }
+  .progress-marker img { width: 24px; height: 24px; }
+  .chip-badge { font-size: 9px; padding: 3px 8px; letter-spacing: 0.16em; }
+  .amount-now { font-size: 16px; }
+  .amount-goal { font-size: 14px; }
   .bonuses {
     grid-auto-rows: auto;
   }
@@ -1427,6 +1821,34 @@ table.benefit tbody td.lvl {
     padding: 12px;
     border-radius: 12px;
   }
+  .progress-stats {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "level"
+      "progress"
+      "monthly";
+    gap: 10px;
+  }
+  .stat-chip { padding: 12px 14px; gap: 6px; }
+  .stat-chip::before { left: 12px; width: 22px; }
+  .chip-label { font-size: 10px; letter-spacing: 0.18em; }
+  .chip-emblem { width: 30px; height: 30px; }
+  .chip-value { font-size: 18px; letter-spacing: 0.06em; }
+  .chip-rm { font-size: 12px; }
+  .chip-cents { font-size: 12px; }
+  .stat-progress { padding: 12px 16px 14px; }
+  .stat-progress .chip-head { gap: 8px; }
+  .chip-badge { font-size: 9px; padding: 3px 8px; letter-spacing: 0.14em; }
+  .progress-track { margin: 18px 18px 6px; height: 11px; }
+  .progress-marker { width: 32px; height: 32px; }
+  .progress-marker img { width: 20px; height: 20px; }
+  .progress-marker-start { left: -8px; }
+  .progress-marker-end   { right: -8px; }
+  .marker-crown { top: -12px; font-size: 11px; }
+  .amount-now { font-size: 15px; }
+  .amount-goal { font-size: 13px; }
+  .amount-now .amount-rm,
+  .amount-goal .amount-rm { font-size: 10px; }
   .rank-banner {
     flex-direction: row;
     justify-content: space-between;
@@ -2008,6 +2430,82 @@ table.benefit tbody td.lvl {
   border-color: #d8d8d8;
 }
 
+/* Progress stats — light theme */
+[data-theme="light"] .stat-chip {
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-color: rgba(225, 14, 28, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 6px rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .stat-chip:hover {
+  border-color: rgba(225, 14, 28, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 24px -14px rgba(225, 14, 28, 0.35);
+}
+[data-theme="light"] .stat-chip::before {
+  background: linear-gradient(90deg, #e10e1c 0%, transparent 100%);
+}
+[data-theme="light"] .chip-label { color: #6a6a6a; }
+[data-theme="light"] .chip-value {
+  background: linear-gradient(180deg, #1a1a1a 0%, #4a4a4a 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+[data-theme="light"] .chip-rm { color: #e10e1c; -webkit-text-fill-color: #e10e1c; }
+[data-theme="light"] .chip-badge {
+  background: linear-gradient(180deg, #ff5060 0%, #e10e1c 100%);
+  color: #ffffff;
+  border-color: rgba(225, 14, 28, 0.6);
+  text-shadow: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 10px -4px rgba(225, 14, 28, 0.55);
+}
+[data-theme="light"] .progress-track {
+  background: linear-gradient(180deg, #f0f0f0 0%, #e4e4e4 100%);
+  border-color: rgba(225, 14, 28, 0.2);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+}
+[data-theme="light"] .progress-fill {
+  background:
+    linear-gradient(180deg, #ff8c80 0%, #ff5060 35%, #e10e1c 65%, #a8000c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 0 14px rgba(225, 14, 28, 0.45),
+    0 0 28px rgba(225, 14, 28, 0.2);
+}
+[data-theme="light"] .progress-marker {
+  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f3f3f3 85%);
+  border-color: #e10e1c;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 16px rgba(225, 14, 28, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+[data-theme="light"] .progress-marker-end {
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 22px rgba(225, 14, 28, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+[data-theme="light"] .marker-crown {
+  color: #e10e1c;
+  text-shadow: 0 0 6px rgba(225, 14, 28, 0.6);
+}
+[data-theme="light"] .amount-now { color: #e10e1c; text-shadow: none; }
+[data-theme="light"] .amount-now .amount-rm,
+[data-theme="light"] .amount-goal .amount-rm { color: #e10e1c; opacity: 1; }
+[data-theme="light"] .amount-goal { color: #1a1a1a; }
+[data-theme="light"] .amount-label { color: #6a6a6a; }
+[data-theme="light"] .amount-hint { color: #6a6a6a; }
+
 /* Tier chain */
 [data-theme="light"] .chain-line {
   background: linear-gradient(
@@ -2160,6 +2658,7 @@ table.benefit tbody td.lvl {
 }
 
 /* Stagger children of revealed containers */
+.progress-panel.in-view .stat-chip,
 .progress-panel.in-view .bonus,
 .tier-chain.in-view .chain-step,
 .benefit.in-view tbody tr,
@@ -2167,10 +2666,24 @@ table.benefit tbody td.lvl {
   animation: fadeInUp 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
+/* Stats chips stagger first, bonuses follow */
+.progress-panel.in-view .stat-chip:nth-child(1) { animation-delay: 0.05s; }
+.progress-panel.in-view .stat-chip:nth-child(2) { animation-delay: 0.12s; }
+.progress-panel.in-view .stat-chip:nth-child(3) { animation-delay: 0.19s; }
+
 /* Bonus cards stagger */
-.progress-panel.in-view .bonus:nth-child(1) { animation-delay: 0.10s; }
-.progress-panel.in-view .bonus:nth-child(2) { animation-delay: 0.20s; }
-.progress-panel.in-view .bonus:nth-child(3) { animation-delay: 0.30s; }
+.progress-panel.in-view .bonus:nth-child(1) { animation-delay: 0.28s; }
+.progress-panel.in-view .bonus:nth-child(2) { animation-delay: 0.36s; }
+.progress-panel.in-view .bonus:nth-child(3) { animation-delay: 0.44s; }
+
+/* Animate the gold fill width on reveal */
+.progress-panel.in-view .progress-fill {
+  animation: progressFillIn 1.6s cubic-bezier(0.2, 0.9, 0.25, 1) 0.35s both;
+}
+@keyframes progressFillIn {
+  from { width: 0%; }
+  to   { width: var(--p, 0%); }
+}
 
 /* Tier chain stagger — left to right cascade
    (chain-line is the first child of .chain-track, so steps start at nth-child(2)) */
@@ -2209,12 +2722,18 @@ table.benefit tbody td.lvl {
     transform: none;
     animation: none !important;
   }
+  .progress-panel.in-view .stat-chip,
   .progress-panel.in-view .bonus,
+  .progress-panel.in-view .progress-fill,
+  .progress-shimmer,
+  .chip-emblem,
+  .progress-marker-end,
   .tier-chain.in-view .chain-step,
   .benefit.in-view tbody tr,
   .terms.in-view .term {
     animation: none !important;
   }
+  .progress-fill { width: var(--p, 0%); }
 }
 
 /* ====================================================
